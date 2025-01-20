@@ -4,7 +4,6 @@ date: 2024-10-24
 ---
 
 Hello, folks!
-
 First off, thank you for choosing to read my blog post among the many out there. Today, I’ll be sharing my experience with the infamous OSCP (Offensive Security Certified Professional), which has become a standard HR filter for any penetration testing job in the industry.
 I won’t dive too deeply into what the OSCP is, as you can easily find all the details on the official website, but here’s a quick summary of what being an OSCP means:
 > An OSCP has demonstrated the ability to use persistence, creativity, and perceptiveness to identify vulnerabilities and execute organized attacks under tight time constraints. They are capable of:
@@ -15,13 +14,17 @@ I won’t dive too deeply into what the OSCP is, as you can easily find all the 
 > - Exploiting XSS, SQL injection, and file inclusion vulnerabilities in web applications.
 > - Leveraging tunneling techniques to pivot between networks.
 
-## Background
+## Overview
 
-I’m a 21-year-old second-year student passionate about the offensive side of cybersecurity. Before attempting the OSCP, I had already obtained the PJPT (Practical Junior Penetration Tester) certification offered by TCM Security and completed several CTFs, which helped me get comfortable with common techniques.
+Throughout my time working on AD labs and helping out my friends with their labs, I realized something: **Windows is extremely hard to debug**. 
 
-Once I felt confident, I decided to take the leap and purchase the OSCP 90-day bundle to start my journey.
+It's hard to Google most errors as they are extremely generic and unique to the particular attack that you're working on, and the error messages are often misleading. Furthermore, commands that I ran may not work for others; and there are many other things to consider, such as:
+- Do you currently have a ticket associated with your session? (Kerberos Double Hop Problem)
+    - If not, do you have credentials to wrap your commands in a PS Credential object?
+- Are you restricted by PowerShell Constrained Language Mode (CLM)?
+- Oh well, surely `klist purge` actually purges all tickets, right?
 
-![1](https://gyazo.com/f58ccf6a848acdf796cdb609535534a9)
+![wtf](https://i.gyazo.com/78bd4c004514fa7acd1614cfc651faec.png)
 
 In this blog post, I'll be going through some of the reasons why I believe that attacking Active Directory from Linux is a better choice than attacking from Windows; and of course some examples of how to do so.
 
