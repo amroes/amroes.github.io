@@ -21,11 +21,11 @@ I’m a 21-year-old second-year student passionate about the offensive side of c
 
 Once I felt confident, I decided to take the leap and purchase the OSCP 90-day bundle to start my journey.
 
-![1](https://gyazo.com/f58ccf6a848acdf796cdb609535534a9)
+![1](https://i.gyazo.com/f58ccf6a848acdf796cdb609535534a9.gif)
 
-In this blog post, I'll be going through some of the reasons why I believe that attacking Active Directory from Linux is a better choice than attacking from Windows; and of course some examples of how to do so.
+## First Attempt — Preparation
 
-## So, what?
+![2]()
 
 I had this realization that the majority of the time when my friends were having issues, I would direct them to port their ticket(s) to linux and use the tools there with `--debug`. The errors thrown here are usually much more helpful and easier to google, and not affected by the instability of Windows.
 
