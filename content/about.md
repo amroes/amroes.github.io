@@ -4,7 +4,7 @@ description: 'Hugo, the world''s fastest framework for building websites'
 author: Hugo Authors
 ---
 <div style="text-align: center">
-    <img src="C:\\Users\\amroe\\Documents\\GitHub\\test.jpeg" style="border-radius: 50%; border: 2px solid #FFFFFF; width: 400px; height: 400px;" alt="placeholder_img">
+    <img src="https://i.gyazo.com/bd131ef4b60a7c626e139ac754e918b0.jpg" style="border-radius: 50%; border: 2px solid #FFFFFF; width: 400px; height: 400px;" alt="placeholder_img">
 </div>
 
 <br> <!-- i love md -->
