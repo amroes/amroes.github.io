@@ -1,15 +1,18 @@
 ---
-title: The Art of Exploiting Active Directory from Linux
-date: 2024-09-07
+title: My OSCP Journey, Failing the First Attempt, Passing the Second
+date: 2024-10-24
 ---
 
-Over the past 6 months, I've been focusing more on the operational side of red teaming and have been actively working at pwning various Active Directory environments and labs. During this time, I finished the [Cybernetics](https://app.hackthebox.com/prolabs/overview/cybernetics) prolab and passed the [CRTP](https://www.alteredsecurity.com/adlab) and [CRTE](https://www.alteredsecurity.com/redteamlab) certifications from Altered Security.
-
-After spending considerable time working with different Command & Control (C2) frameworks, troubleshooting .NET compilation errors, forgetting how to UAC bypass, wrapping commands in PS Credential objects, and dealing with PowerShell Constrained Language Mode (CLM), I’ve come to realize that exploiting AD purely from Windows will cause my life expectancy to decrease significantly.
-
-![wtf](https://i.gyazo.com/8a5954d25d69bd68b67d933f83545d3f.png)
-
-So, that really got me thinking: why do we even perform attacks on Active Directory from Windows? 
+Hello, folks!
+First off, thank you for choosing to read my blog post among the many out there. Today, I’ll be sharing my experience with the infamous OSCP (Offensive Security Certified Professional), which has become a standard HR filter for any penetration testing job in the industry.
+I won’t dive too deeply into what the OSCP is, as you can easily find all the details on the official website, but here’s a quick summary of what being an OSCP means:
+> An OSCP has demonstrated the ability to use persistence, creativity, and perceptiveness to identify vulnerabilities and execute organized attacks under tight time constraints. They are capable of:
+> - Using information gathering techniques to identify and enumerate targets running various operating systems and services.
+> - Writing scripts and tools to aid in the penetration testing process.
+> - Analyzing, modifying, and porting public exploit code.
+> - Conducting remote, local privilege escalation, and client-side attacks.
+> - Exploiting XSS, SQL injection, and file inclusion vulnerabilities in web applications.
+> - Leveraging tunneling techniques to pivot between networks.
 
 ## Overview
 
