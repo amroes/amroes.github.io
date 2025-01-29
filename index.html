@@ -122,21 +122,22 @@
     <section id="blogs" class="container">
       <h2 class="section-title">Explore My <strong>Blogs</strong></h2>
       <div class="blogs-container">
-          <div class="blog-card">
-              <img src="./assets/profilepic.png" alt="Blog One" class="blog-image">
-              <h3 class="blog-title">Blog One</h3>
-              <a href="blog1.html" class="btn">Read More</a>
-          </div>
-          <div class="blog-card">
-              <img src="./assets/profilepic.png" alt="Blog Two" class="blog-image">
-              <h3 class="blog-title">Blog Two</h3>
-              <a href="blog2.html" class="btn">Read More</a>
-          </div>
-          <div class="blog-card">
-              <img src="./assets/profilepic.png" alt="Blog Three" class="blog-image">
-              <h3 class="blog-title">Blog Three</h3>
-              <a href="blog3.html" class="btn">Read More</a>
-          </div>
+        <div class="blog-entry">
+          <div class="blog-title">My First Blog Post</div>
+          <div class="blog-date">January 1, 2024</div>
+          <div class="blog-description">This is a short description of my first blog post. It gives a brief overview of the content.</div>
+      </div>
+      <div class="blog-entry">
+          <div class="blog-title">Understanding Web Security</div>
+          <div class="blog-date">February 15, 2024</div>
+          <div class="blog-description">An introduction to web security concepts and best practices for developers.</div>
+      </div>
+      <div class="blog-entry">
+          <div class="blog-title">AI in Cybersecurity</div>
+          <div class="blog-date">March 10, 2024</div>
+          <div class="blog-description">Exploring how artificial intelligence is revolutionizing the field of cybersecurity.</div>
+      </div>
+  </div>
       </div>
   </section>
   
@@ -153,35 +154,33 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-  }
-  .blog-card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 300px;
-      text-align: center;
-  }
-  .blog-image {
-      width: 100%;
-      border-radius: 10px;
-  }
-  .blog-title {
-      margin: 15px 0;
-      font-size: 1.5rem;
-  }
-  .btn {
-      display: inline-block;
-      padding: 10px 15px;
-      background: black;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
-  }
-  .btn:hover {
-      background: #444;
-  }
+  }  
+        .blog-entry {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease-in-out;
+        }
+        .blog-entry:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .blog-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        .blog-date {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+        .blog-description {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
   </style>
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
