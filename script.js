@@ -1,53 +1,34 @@
-function toggleMenu() {
-  const menu = document.querySelector(".menu-links");
-  const icon = document.querySelector(".hamburger-icon");
-  menu.classList.toggle("open");
-  icon.classList.toggle("open");
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const modeToggle = document.getElementById("modeToggle");
+  const modeToggle2 = document.getElementById("modeToggle2");
+  const body = document.body;
 
-// Dark / light mode
-
-const btn = document.getElementById("modeToggle");
-const btn2 = document.getElementById("modeToggle2");
-const themeIcons = document.querySelectorAll(".icon");
-const currentTheme = localStorage.getItem("theme");
-
-if (currentTheme === "dark") {
-  setDarkMode();
-}
-
-btn.addEventListener("click", function () {
-  setTheme();
-});
-
-btn2.addEventListener("click", function () {
-  setTheme();
-});
-
-function setTheme() {
-  let currentTheme = document.body.getAttribute("theme");
-
-  if (currentTheme === "dark") {
-    setLightMode();
+  // Check local storage for previous theme
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    modeToggle.src = modeToggle.getAttribute("src-dark");
+    modeToggle2.src = modeToggle2.getAttribute("src-dark");
   } else {
-    setDarkMode();
+    body.classList.remove("dark-mode");
+    modeToggle.src = modeToggle.getAttribute("src-light");
+    modeToggle2.src = modeToggle2.getAttribute("src-light");
   }
-}
 
-function setDarkMode() {
-  document.body.setAttribute("theme", "dark");
-  localStorage.setItem("theme", "dark");
+  function toggleDarkMode() {
+    body.classList.toggle("dark-mode");
+    const isDarkMode = body.classList.contains("dark-mode");
 
-  themeIcons.forEach((icon) => {
-    icon.src = icon.getAttribute("src-dark");
-  });
-}
+    if (isDarkMode) {
+      modeToggle.src = modeToggle.getAttribute("src-dark");
+      modeToggle2.src = modeToggle2.getAttribute("src-dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      modeToggle.src = modeToggle.getAttribute("src-light");
+      modeToggle2.src = modeToggle2.getAttribute("src-light");
+      localStorage.setItem("theme", "light");
+    }
+  }
 
-function setLightMode() {
-  document.body.removeAttribute("theme");
-  localStorage.setItem("theme", "light");
-
-  themeIcons.forEach((icon) => {
-    icon.src = icon.getAttribute("src-light");
-  });
-}
+  modeToggle.addEventListener("click", toggleDarkMode);
+  modeToggle2.addEventListener("click", toggleDarkMode);
+});
