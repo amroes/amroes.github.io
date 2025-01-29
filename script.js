@@ -1,34 +1,53 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const modeToggle = document.getElementById("modeToggle");
-  const modeToggle2 = document.getElementById("modeToggle2");
-  const body = document.body;
+function toggleMenu() {
+  const menu = document.querySelector(".menu-links");
+  const icon = document.querySelector(".hamburger-icon");
+  menu.classList.toggle("open");
+  icon.classList.toggle("open");
+}
 
-  // Check local storage for previous theme
-  if (localStorage.getItem("theme") === "dark") {
-    body.classList.add("dark-mode");
-    modeToggle.src = modeToggle.getAttribute("src-dark");
-    modeToggle2.src = modeToggle2.getAttribute("src-dark");
-  } else {
-    body.classList.remove("dark-mode");
-    modeToggle.src = modeToggle.getAttribute("src-light");
-    modeToggle2.src = modeToggle2.getAttribute("src-light");
-  }
+// Dark / light mode
 
-  function toggleDarkMode() {
-    body.classList.toggle("dark-mode");
-    const isDarkMode = body.classList.contains("dark-mode");
+const btn = document.getElementById("modeToggle");
+const btn2 = document.getElementById("modeToggle2");
+const themeIcons = document.querySelectorAll(".icon");
+const currentTheme = localStorage.getItem("theme");
 
-    if (isDarkMode) {
-      modeToggle.src = modeToggle.getAttribute("src-dark");
-      modeToggle2.src = modeToggle2.getAttribute("src-dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      modeToggle.src = modeToggle.getAttribute("src-light");
-      modeToggle2.src = modeToggle2.getAttribute("src-light");
-      localStorage.setItem("theme", "light");
-    }
-  }
+if (currentTheme === "dark") {
+  setDarkMode();
+}
 
-  modeToggle.addEventListener("click", toggleDarkMode);
-  modeToggle2.addEventListener("click", toggleDarkMode);
+btn.addEventListener("click", function () {
+  setTheme();
 });
+
+btn2.addEventListener("click", function () {
+  setTheme();
+});
+
+function setTheme() {
+  let currentTheme = document.body.getAttribute("theme");
+
+  if (currentTheme === "dark") {
+    setLightMode();
+  } else {
+    setDarkMode();
+  }
+}
+
+function setDarkMode() {
+  document.body.setAttribute("theme", "dark");
+  localStorage.setItem("theme", "dark");
+
+  themeIcons.forEach((icon) => {
+    icon.src = icon.getAttribute("src-dark");
+  });
+}
+
+function setLightMode() {
+  document.body.removeAttribute("theme");
+  localStorage.setItem("theme", "light");
+
+  themeIcons.forEach((icon) => {
+    icon.src = icon.getAttribute("src-light");
+  });
+}
