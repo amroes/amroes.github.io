@@ -119,17 +119,70 @@
         onclick="location.href='./#Blogs'"
       />
     </section>
-    <section id="blogs">
-      <h2>Explore My <strong>Blogs</strong></h2>
-      <div class="blog-list">
-          <ul>
-              <li><a href="blog1.html">Understanding JavaScript Closures</a></li>
-              <li><a href="blog2.html">CSS Grid vs. Flexbox: When to Use What?</a></li>
-              <li><a href="blog3.html">A Beginner’s Guide to Node.js</a></li>
-              <li><a href="blog4.html">How to Optimize Your React Apps</a></li>
-          </ul>
+    <section id="blogs" class="container">
+      <h2 class="section-title">Explore My <strong>Blogs</strong></h2>
+      <div class="blogs-container">
+          <div class="blog-card">
+              <img src="blog1.jpg" alt="Blog One" class="blog-image">
+              <h3 class="blog-title">Blog One</h3>
+              <a href="blog1.html" class="btn">Read More</a>
+          </div>
+          <div class="blog-card">
+              <img src="blog2.jpg" alt="Blog Two" class="blog-image">
+              <h3 class="blog-title">Blog Two</h3>
+              <a href="blog2.html" class="btn">Read More</a>
+          </div>
+          <div class="blog-card">
+              <img src="blog3.jpg" alt="Blog Three" class="blog-image">
+              <h3 class="blog-title">Blog Three</h3>
+              <a href="blog3.html" class="btn">Read More</a>
+          </div>
       </div>
   </section>
+  
+  <style>
+  .container {
+      text-align: center;
+      padding: 50px 20px;
+  }
+  .section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+  }
+  .blogs-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+  }
+  .blog-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      text-align: center;
+  }
+  .blog-image {
+      width: 100%;
+      border-radius: 10px;
+  }
+  .blog-title {
+      margin: 15px 0;
+      font-size: 1.5rem;
+  }
+  .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: black;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+  }
+  .btn:hover {
+      background: #444;
+  }
+  </style>
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
