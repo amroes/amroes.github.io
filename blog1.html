@@ -1,3 +1,6 @@
+<hr>
+<h2 id="title-my-oscp-journey-failing-the-first-attempt-passing-the-second-date-2024-10-24">title: My OSCP Journey, Failing the First Attempt, Passing the Second
+date: 2024-10-24</h2>
 <p>Hello, folks!</p>
 <p>First off, thank you for choosing to read my blog post among the many out there. Today, I’ll be sharing my experience with the infamous OSCP (Offensive Security Certified Professional), which has become a standard HR filter for any penetration testing job in the industry.
 I won’t dive too deeply into what the OSCP is, as you can easily find all the details on the official website, but here’s a quick summary of what being an OSCP means:</p>
@@ -16,7 +19,7 @@ I won’t dive too deeply into what the OSCP is, as you can easily find all the 
 <p>I’m a 21-year-old second-year student passionate about the offensive side of cybersecurity. Before attempting the OSCP, I had already obtained the PJPT (Practical Junior Penetration Tester) certification offered by TCM Security and completed several CTFs, which helped me get comfortable with common techniques.</p>
 <p>Once I felt confident, I decided to take the leap and purchase the OSCP 90-day bundle to start my journey.</p>
 <p><img src="https://i.gyazo.com/f58ccf6a848acdf796cdb609535534a9.gif" alt="1"></p>
-<h2 id="first-attempt-preparation">First Attempt — Preparation</h2>
+<h2 id="first-attempt--preparation">First Attempt — Preparation</h2>
 <p><img src="https://i.gyazo.com/8b32ed01bc96cab0a995a179560e1d46.gif" alt="2"></p>
 <p>I was incredibly motivated to get my OSCP. Despite juggling a summer internship in AI, I remained disciplined and dedicated most of my free time to going through the OSCP course. I took detailed notes and made sure to fully understand everything covered in the course.</p>
 <p>While the course itself is a great starting point, <strong>it’s not enough to pass the exam</strong> on its own (more on that later). I highly recommend reading the <strong>OffSec documentation</strong> at the end of each section to gain a deeper understanding of the concepts.</p>
@@ -28,12 +31,12 @@ I won’t dive too deeply into what the OSCP is, as you can easily find all the 
 <p>I fully compromised two standalone machines, but that wasn’t enough to pass. After struggling for hours and getting mentally and physically drained, I gave up two hours before the exam ended. I wrote my report afterward to get some feedback, but as many have said before, the feedback from OffSec wasn’t very helpful.</p>
 <p>At that point, I had one choice: <strong>Try Harder</strong>.</p>
 <p><img src="https://i.gyazo.com/86238bf9d12165ecb8ec55baed1e3205.png" alt="4"></p>
-<h2 id="2nd-attempt-preparation">2nd Attempt — Preparation</h2>
+<h2 id="2nd-attempt--preparation">2nd Attempt — Preparation</h2>
 <p>After failing the first attempt, I took a week off to clear my head and enjoy the rest of the summer while continuing my internship. Once I felt refreshed, I returned to the <strong>PEN-200</strong> course (which I still had 30 days left on) and tackled <strong>Skylark</strong> — which, although out of scope for the exam, really helped solidify my AD knowledge and foothold techniques.</p>
 <p>I also subscribed to <strong>Proving Grounds (PG)</strong> for a month and went through all the AD and Windows machines on <strong>Lukainsagi’s</strong> list (which can be found <a href="https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/htmlview">here</a>). This time, I left only a few Linux machines untouched.</p>
 <p>The extra preparation gave me more techniques, understanding, and most importantly — <strong>confidence</strong>.</p>
 <p>I planned my exam with a new strategy: allocate specific time blocks for each machine and take plenty of rest breaks. This change in approach made a <strong>huge</strong> difference.</p>
-<h3 id="2nd-attempt-exam-day">2nd Attempt — Exam Day</h3>
+<h3 id="2nd-attempt--exam-day">2nd Attempt — Exam Day</h3>
 <p>After finishing my internship and returning to university, I scheduled my second exam in early October, on a weekend. I started at 1 AM (yes, a late start!). This time, I managed to finish the <strong>AD set</strong> in just 5 hours, with several rest breaks in between. After compromising the Domain Controller (DC) and securing 40 points, I decided to <strong>take a break</strong> — I went out, cleared my mind, and returned later to tackle the standalone machines. By the way, I had <strong>Nmap</strong> running on the other targets during my break.</p>
 <p>When I returned, one machine’s foothold was incredibly tricky. I wish I could spoil it here, but let’s just say it was <em>tricky and fun</em>. My advice: <strong>Google everything</strong>. Even if it’s just a website name or an odd service showing up in Nmap — Google it!</p>
 <p>I got a foothold after about 8 hours and reached 60 points. With only 10 points to go, I had two options: escalate privileges on a standalone or pivot to another machine. Since I was more comfortable with Windows, I chose to focus on <strong>privilege escalation</strong> on the standalone. Surprisingly, the privilege escalation trick was right in front of me the whole time, but <strong>WinPEAS</strong> didn’t detect it.</p>
@@ -47,5 +50,5 @@ I won’t dive too deeply into what the OSCP is, as you can easily find all the 
 <h3 id="afterthoughts">Afterthoughts</h3>
 <p>The OSCP course could use some updates to better align with the actual exam. There are key techniques needed to pass that aren’t fully covered in the course materials, and at times it feels like this is done on purpose to maintain the reputation that the <strong>“OSCP is hard.”</strong></p>
 <p>However, this has its benefits too. It forces you to think critically and conduct your own research, which is a vital skill in penetration testing.</p>
-<h3 id="next-up-for-me-">Next up for me?</h3>
+<h3 id="next-up-for-me">Next up for me?</h3>
 <p>I’m planning to pursue <strong>OSCE3</strong>, but before that, I’ll likely tackle some <strong>red teaming</strong> and web-related certifications. Don’t worry — <strong>more blogs are coming</strong> to document my journey and hopefully inspire other beginners, intermediates, and professionals in the field to pursue their dreams and certifications.</p>
