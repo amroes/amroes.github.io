@@ -17,16 +17,6 @@
           <li><a href="#blogs">Blogs</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li>
-            <img
-              id="modeToggle"
-              class="icon color-icon"
-              src="./assets/theme_light.png"
-              src-light="./assets/theme_light.png"
-              src-dark="./assets/theme_dark.png"
-              alt="Color them icon"
-            />
-          </li>
         </ul>
       </div>
     </nav>
@@ -43,16 +33,6 @@
           <li><a href="#blogs" onclick="toggleMenu()">Blogs</a></li>
           <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
           <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-          <li>
-            <img
-              id="modeToggle2"
-              class="icon color-icon"
-              src="./assets/theme_light.png"
-              src-light="./assets/theme_light.png"
-              src-dark="./assets/theme_dark.png"
-              alt="Color them icon"
-            />
-          </li>
         </div>
       </div>
     </nav>
@@ -77,19 +57,15 @@
         </div>
         <div id="socials-container">
           <img
-            src="./assets/linkedin_light.png"
-            src-light="./assets/linkedin_light.png"
-            src-dark="./assets/linkedin_dark.png"
+            src="./assets/linkedin.png"
             alt="My LinkedIn profile"
-            class="icon linkedin-icon"
+            class="icon"
             onclick="location.href='https://www.linkedin.com/in/amro-esseroukh-a6aa29229/'"
           />
           <img
-            src="./assets/github_light.png"
-            src-light="./assets/github_light.png"
-            src-dark="./assets/github_dark.png"
-            alt="My github profile"
-            class="icon github-icon"
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
             onclick="location.href='https://github.com/amroes'"
           />
         </div>
@@ -109,10 +85,8 @@
         <div class="about-details-container">
           <div class="about-containers">
             <div class="details-container">
-               <img
-                src="./assets/education_light.png"
-                src-light="./assets/education_light.png"
-                src-dark="./assets/education_dark.png"
+              <img
+                src="./assets/education.png"
                 alt="Education icon"
                 class="icon"
               />
@@ -130,83 +104,72 @@
         </div>
       </div>
       <img
-        src="./assets/arrow_light.png"
-        src-light="./assets/arrow_light.png"
-        src-dark="./assets/arrow_dark.png"
+        src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#blogs'"
+        onclick="location.href='./#Blogs'"
       />
     </section>
-  </section>
-  <section id="blogs" class="container">
-    <p class="section__text__p1">Explore My</p>
-    <h1 class="title">Blogs</h1>
-    <div class="blogs-container">
-      <div class="details-container">
-        <div class="blog-entry">
-          <div class="blog-title">
-            <a href="blog1.html">My OSCP Journey</a>
+    <section id="blogs" class="container">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Blogs</h1>
+      <div class="blogs-container">
+        <div class="details-container">
+          <div class="blog-entry">
+            <div class="blog-title">
+              <a href="blog1.html">My OSCP Journey</a>
+            </div>
+            <div class="blog-date">October 24, 2024</div>
+            <div class="blog-description">This is My First Blog post showcasing my OSCP Journey: From Failing The First Attempt To Passing The Second. It gives a brief overview of the content.</div>
           </div>
-          <div class="blog-date">October 24, 2024</div>
-          <div class="blog-description">This is My First Blog post showcasing my OSCP Journey: From Failing The First Attempt To Passing The Second. It gives a brief overview of the content.</div>
         </div>
       </div>
-    </div>
-    <img
-        src="./assets/arrow_light.png"
-        src-light="./assets/arrow_light.png"
-        src-dark="./assets/arrow_dark.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
-  </section>
-
-  <style>
-    .container {
-        text-align: center;
-        padding: 50px 20px;
-    }
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-    .blogs-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-    .details-container {
-        background: #f9f9f9;
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: 0.3s ease-in-out;
-    }
-    .details-container:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .blog-entry {
-        text-align: left;
-    }
-    .blog-title {
-        font-size: 22px;
-        font-weight: bold;
-        color: #000000;
-    }
-    .blog-date {
-        font-size: 14px;
-        color: #777;
-        margin-top: 5px;
-    }
-    .blog-description {
-        font-size: 16px;
-        color: #555;
-        margin-top: 10px;
-    }
-  </style>
+    </section>
+  
+    <style>
+      .container {
+          text-align: center;
+          padding: 50px 20px;
+      }
+      .section-title {
+          font-size: 2rem;
+          margin-bottom: 20px;
+      }
+      .blogs-container {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+      }
+      .details-container {
+          background: #f9f9f9;
+          padding: 20px;
+          border-radius: 8px;
+          border: 1px solid #ddd;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          transition: 0.3s ease-in-out;
+      }
+      .details-container:hover {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .blog-entry {
+          text-align: left;
+      }
+      .blog-title {
+          font-size: 22px;
+          font-weight: bold;
+          color: #333;
+      }
+      .blog-date {
+          font-size: 14px;
+          color: #777;
+          margin-top: 5px;
+      }
+      .blog-description {
+          font-size: 16px;
+          color: #555;
+          margin-top: 10px;
+      }
+    </style>
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
@@ -287,9 +250,7 @@
         </div>
       </div>
       <img
-        src="./assets/arrow_light.png"
-        src-light="./assets/arrow_light.png"
-        src-dark="./assets/arrow_dark.png"
+        src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
         onclick="location.href='./#contact'"
@@ -301,9 +262,7 @@
       <div class="contact-info-upper-container">
         <div class="contact-info-container">
           <img
-            src="./assets/email_light.png"
-            src-light="./assets/email_light.png"
-            src-dark="./assets/email_dark.png"
+            src="./assets/email.png"
             alt="Email icon"
             class="icon contact-icon email-icon"
           />
@@ -311,12 +270,9 @@
         </div>
         <div class="contact-info-container">
           <img
-            src="./assets/linkedin_light.png"
-            src-light="./assets/linkedin_light.png"
-            src-dark="./assets/linkedin_dark.png"
-            alt="My LinkedIn profile"
-            class="icon linkedin-icon"
-            onclick="location.href='https://www.linkedin.com/in/amro-esseroukh-a6aa29229/'"
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
           />
           <p><a href="https://www.linkedin.com/in/amro-esseroukh-a6aa29229/">LinkedIn</a></p>
         </div>
