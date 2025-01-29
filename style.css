@@ -480,3 +480,6 @@ footer {
 footer p {
   text-align: center;
 }
+p, h1, h2, h3, h4, h5, h6 {
+  color: inherit; /* Hérite de body */
+}
