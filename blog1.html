@@ -1,122 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My OSCP Journey</title>
-  <style>
-    /* General styles for dark theme */
-    body {
-      background-color: #121212; /* Black background */
-      color: #e0e0e0; /* Light gray text */
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-
-    h2 {
-      color: #f0f0f0; /* Light text for headings */
-    }
-
-    p, li, blockquote {
-      color: #b0b0b0; /* Slightly dimmed text */
-    }
-
-    a {
-      color: #1e90ff; /* Blue links */
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    hr {
-      border: 1px solid #444444; /* Subtle separator */
-    }
-
-    blockquote {
-      background-color: #222222; /* Darker background for blockquotes */
-      border-left: 4px solid #1e90ff; /* Blue left border for blockquote */
-      padding: 10px;
-      margin: 10px 0;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 10px 0;
-    }
-
-    /* Styling for lists */
-    ul {
-      list-style-type: disc;
-      margin-left: 20px;
-    }
-
-    li {
-      margin: 5px 0;
-    }
-
-    h3 {
-      color: #ffffff; /* White color for subheadings */
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My OSCP Journey</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff;
+        }
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        blockquote {
+            border-left: 4px solid #1e90ff;
+            margin: 0;
+            padding-left: 20px;
+            color: #b0b0b0;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #333;
+            margin: 20px 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-  <hr>
-  <h2 id="title-my-oscp-journey-failing-the-first-attempt-passing-the-second-date-2024-10-24">title: My OSCP Journey, Failing the First Attempt, Passing the Second
-  date: 2024-10-24</h2>
-  <p>Hello, folks!</p>
-  <p>First off, thank you for choosing to read my blog post among the many out there. Today, I’ll be sharing my experience with the infamous OSCP (Offensive Security Certified Professional), which has become a standard HR filter for any penetration testing job in the industry.</p>
-  <blockquote>
-    <p>An OSCP has demonstrated the ability to use persistence, creativity, and perceptiveness to identify vulnerabilities and execute organized attacks under tight time constraints. They are capable of:</p>
-    <ul>
-      <li>Using information gathering techniques to identify and enumerate targets running various operating systems and services.</li>
-      <li>Writing scripts and tools to aid in the penetration testing process.</li>
-      <li>Analyzing, modifying, and porting public exploit code.</li>
-      <li>Conducting remote, local privilege escalation, and client-side attacks.</li>
-      <li>Exploiting XSS, SQL injection, and file inclusion vulnerabilities in web applications.</li>
-      <li>Leveraging tunneling techniques to pivot between networks.</li>
-    </ul>
-  </blockquote>
-  <h2 id="background">Background</h2>
-  <p>I’m a 21-year-old second-year student passionate about the offensive side of cybersecurity. Before attempting the OSCP, I had already obtained the PJPT (Practical Junior Penetration Tester) certification offered by TCM Security and completed several CTFs, which helped me get comfortable with common techniques.</p>
-  <p>Once I felt confident, I decided to take the leap and purchase the OSCP 90-day bundle to start my journey.</p>
-  <img src="https://i.gyazo.com/f58ccf6a848acdf796cdb609535534a9.gif" alt="1">
-<h2 id="first-attempt--preparation">First Attempt — Preparation</h2>
-<p><img src="https://i.gyazo.com/8b32ed01bc96cab0a995a179560e1d46.gif" alt="2"></p>
-<p>I was incredibly motivated to get my OSCP. Despite juggling a summer internship in AI, I remained disciplined and dedicated most of my free time to going through the OSCP course. I took detailed notes and made sure to fully understand everything covered in the course.</p>
-<p>While the course itself is a great starting point, <strong>it’s not enough to pass the exam</strong> on its own (more on that later). I highly recommend reading the <strong>OffSec documentation</strong> at the end of each section to gain a deeper understanding of the concepts.</p>
-<p>Also, don’t hesitate to ask for help in the OffSec Discord community. It’s much easier to grasp certain concepts when professionals clarify them, rather than trying to figure out everything on your own.</p>
-<p>I completed most of the labs, some extra miles, and all of the challenge labs — except <strong>Skylark</strong>. I managed to secure the 10 bonus points in around 47 days. Feeling confident, I scheduled my exam for August.</p>
-<p><img src="https://i.gyazo.com/f60c4fb063d5be992fdc89e2530b98d9.gif" alt="3"></p>
-<h2 id="first-exam-attempt">First Exam Attempt</h2>
-<p>I started the exam early in the morning, exactly at 11 AM, after completing the proctoring checks. After receiving the exam details and VPN, I kicked things off with the <strong>Active Directory (AD)</strong> set, which I felt confident in. But to my surprise, the AD environment I received was insanely difficult — yes, it was the infamous <strong>Nightmare AD</strong> that many OSCP candidates dread.</p>
-<p>I fully compromised two standalone machines, but that wasn’t enough to pass. After struggling for hours and getting mentally and physically drained, I gave up two hours before the exam ended. I wrote my report afterward to get some feedback, but as many have said before, the feedback from OffSec wasn’t very helpful.</p>
-<p>At that point, I had one choice: <strong>Try Harder</strong>.</p>
-<p><img src="https://i.gyazo.com/86238bf9d12165ecb8ec55baed1e3205.png" alt="4"></p>
-<h2 id="2nd-attempt--preparation">2nd Attempt — Preparation</h2>
-<p>After failing the first attempt, I took a week off to clear my head and enjoy the rest of the summer while continuing my internship. Once I felt refreshed, I returned to the <strong>PEN-200</strong> course (which I still had 30 days left on) and tackled <strong>Skylark</strong> — which, although out of scope for the exam, really helped solidify my AD knowledge and foothold techniques.</p>
-<p>I also subscribed to <strong>Proving Grounds (PG)</strong> for a month and went through all the AD and Windows machines on <strong>Lukainsagi’s</strong> list (which can be found <a href="https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/htmlview">here</a>). This time, I left only a few Linux machines untouched.</p>
-<p>The extra preparation gave me more techniques, understanding, and most importantly — <strong>confidence</strong>.</p>
-<p>I planned my exam with a new strategy: allocate specific time blocks for each machine and take plenty of rest breaks. This change in approach made a <strong>huge</strong> difference.</p>
-<h3 id="2nd-attempt--exam-day">2nd Attempt — Exam Day</h3>
-<p>After finishing my internship and returning to university, I scheduled my second exam in early October, on a weekend. I started at 1 AM (yes, a late start!). This time, I managed to finish the <strong>AD set</strong> in just 5 hours, with several rest breaks in between. After compromising the Domain Controller (DC) and securing 40 points, I decided to <strong>take a break</strong> — I went out, cleared my mind, and returned later to tackle the standalone machines. By the way, I had <strong>Nmap</strong> running on the other targets during my break.</p>
-<p>When I returned, one machine’s foothold was incredibly tricky. I wish I could spoil it here, but let’s just say it was <em>tricky and fun</em>. My advice: <strong>Google everything</strong>. Even if it’s just a website name or an odd service showing up in Nmap — Google it!</p>
-<p>I got a foothold after about 8 hours and reached 60 points. With only 10 points to go, I had two options: escalate privileges on a standalone or pivot to another machine. Since I was more comfortable with Windows, I chose to focus on <strong>privilege escalation</strong> on the standalone. Surprisingly, the privilege escalation trick was right in front of me the whole time, but <strong>WinPEAS</strong> didn’t detect it.</p>
-<p>After manually enumerating the machine, I found the trick, escalated to <strong>SYSTEM</strong>, and secured the last 10 points I needed to pass. The whole privilege escalation process took me about 45 minutes.</p>
-<p><img src="https://i.gyazo.com/ff2f19b42862d8b7d2277390bef502f0.gif" alt="5"></p>
-<h3 id="report-writing-and-final-results">Report Writing and Final Results</h3>
-<p>Hyped and relieved, I immediately started writing my report. Remember, no one wants to fail the OSCP because of a poor report, especially after all that hard work. My report was around 42 pages long, using the OffSec-provided template. I detailed every step, attack chain, vulnerability found, and mitigation strategy.</p>
-<p>After about 3–4 hours, I perfected my report and submitted it. Three days later, I received the email I’d been waiting for: <strong>I PASSED!</strong> </p>
-<p><a href="https://www.credential.net/6dd275c1-1f56-47fb-8349-6ed4483e5bd6#acc.9QzAO1SJ">View My credential</a></p>
-<p><img src="https://i.gyazo.com/678a6d8e6482dbf6bf8774de2c36aa97.png" alt="6"></p>
-<h3 id="afterthoughts">Afterthoughts</h3>
-<p>The OSCP course could use some updates to better align with the actual exam. There are key techniques needed to pass that aren’t fully covered in the course materials, and at times it feels like this is done on purpose to maintain the reputation that the <strong>“OSCP is hard.”</strong></p>
-<p>However, this has its benefits too. It forces you to think critically and conduct your own research, which is a vital skill in penetration testing.</p>
-<h3 id="next-up-for-me">Next up for me?</h3>
-<p>I’m planning to pursue <strong>OSCE3</strong>, but before that, I’ll likely tackle some <strong>red teaming</strong> and web-related certifications. Don’t worry — <strong>more blogs are coming</strong> to document my journey and hopefully inspire other beginners, intermediates, and professionals in the field to pursue their dreams and certifications.</p>
+    <div class="container">
+        <hr>
+        <h2 id="title-my-oscp-journey-failing-the-first-attempt-passing-the-second-date-2024-10-24">title: My OSCP Journey, Failing the First Attempt, Passing the Second
+        date: 2024-10-24</h2>
+        <p>Hello, folks!</p>
+        <p>First off, thank you for choosing to read my blog post among the many out there. Today, I’ll be sharing my experience with the infamous OSCP (Offensive Security Certified Professional), which has become a standard HR filter for any penetration testing job in the industry.
+        I won’t dive too deeply into what the OSCP is, as you can easily find all the details on the official website, but here’s a quick summary of what being an OSCP means:</p>
+        <blockquote>
+            <p>An OSCP has demonstrated the ability to use persistence, creativity, and perceptiveness to identify vulnerabilities and execute organized attacks under tight time constraints. They are capable of:</p>
+            <ul>
+                <li>Using information gathering techniques to identify and enumerate targets running various operating systems and services.</li>
+                <li>Writing scripts and tools to aid in the penetration testing process.</li>
+                <li>Analyzing, modifying, and porting public exploit code.</li>
+                <li>Conducting remote, local privilege escalation, and client-side attacks.</li>
+                <li>Exploiting XSS, SQL injection, and file inclusion vulnerabilities in web applications.</li>
+                <li>Leveraging tunneling techniques to pivot between networks.</li>
+            </ul>
+        </blockquote>
+        <h2 id="background">Background</h2>
+        <p>I’m a 21-year-old second-year student passionate about the offensive side of cybersecurity. Before attempting the OSCP, I had already obtained the PJPT (Practical Junior Penetration Tester) certification offered by TCM Security and completed several CTFs, which helped me get comfortable with common techniques.</p>
+        <p>Once I felt confident, I decided to take the leap and purchase the OSCP 90-day bundle to start my journey.</p>
+        <p><img src="https://i.gyazo.com/f58ccf6a848acdf796cdb609535534a9.gif" alt="1"></p>
+        <h2 id="first-attempt--preparation">First Attempt — Preparation</h2>
+        <p><img src="https://i.gyazo.com/8b32ed01bc96cab0a995a179560e1d46.gif" alt="2"></p>
+        <p>I was incredibly motivated to get my OSCP. Despite juggling a summer internship in AI, I remained disciplined and dedicated most of my free time to going through the OSCP course. I took detailed notes and made sure to fully understand everything covered in the course.</p>
+        <p>While the course itself is a great starting point, <strong>it’s not enough to pass the exam</strong> on its own (more on that later). I highly recommend reading the <strong>OffSec documentation</strong> at the end of each section to gain a deeper understanding of the concepts.</p>
+        <p>Also, don’t hesitate to ask for help in the OffSec Discord community. It’s much easier to grasp certain concepts when professionals clarify them, rather than trying to figure out everything on your own.</p>
+        <p>I completed most of the labs, some extra miles, and all of the challenge labs — except <strong>Skylark</strong>. I managed to secure the 10 bonus points in around 47 days. Feeling confident, I scheduled my exam for August.</p>
+        <p><img src="https://i.gyazo.com/f60c4fb063d5be992fdc89e2530b98d9.gif" alt="3"></p>
+        <h2 id="first-exam-attempt">First Exam Attempt</h2>
+        <p>I started the exam early in the morning, exactly at 11 AM, after completing the proctoring checks. After receiving the exam details and VPN, I kicked things off with the <strong>Active Directory (AD)</strong> set, which I felt confident in. But to my surprise, the AD environment I received was insanely difficult — yes, it was the infamous <strong>Nightmare AD</strong> that many OSCP candidates dread.</p>
+        <p>I fully compromised two standalone machines, but that wasn’t enough to pass. After struggling for hours and getting mentally and physically drained, I gave up two hours before the exam ended. I wrote my report afterward to get some feedback, but as many have said before, the feedback from OffSec wasn’t very helpful.</p>
+        <p>At that point, I had one choice: <strong>Try Harder</strong>.</p>
+        <p><img src="https://i.gyazo.com/86238bf9d12165ecb8ec55baed1e3205.png" alt="4"></p>
+        <h2 id="2nd-attempt--preparation">2nd Attempt — Preparation</h2>
+        <p>After failing the first attempt, I took a week off to clear my head and enjoy the rest of the summer while continuing my internship. Once I felt refreshed, I returned to the <strong>PEN-200</strong> course (which I still had 30 days left on) and tackled <strong>Skylark</strong> — which, although out of scope for the exam, really helped solidify my AD knowledge and foothold techniques.</p>
+        <p>I also subscribed to <strong>Proving Grounds (PG)</strong> for a month and went through all the AD and Windows machines on <strong>Lukainsagi’s</strong> list (which can be found <a href="https://docs.google.com/spreadsheets/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/htmlview">here</a>). This time, I left only a few Linux machines untouched.</p>
+        <p>The extra preparation gave me more techniques, understanding, and most importantly — <strong>confidence</strong>.</p>
+        <p>I planned my exam with a new strategy: allocate specific time blocks for each machine and take plenty of rest breaks. This change in approach made a <strong>huge</strong> difference.</p>
+        <h3 id="2nd-attempt--exam-day">2nd Attempt — Exam Day</h3>
+        <p>After finishing my internship and returning to university, I scheduled my second exam in early October, on a weekend. I started at 1 AM (yes, a late start!). This time, I managed to finish the <strong>AD set</strong> in just 5 hours, with several rest breaks in between. After compromising the Domain Controller (DC) and securing 40 points, I decided to <strong>take a break</strong> — I went out, cleared my mind, and returned later to tackle the standalone machines. By the way, I had <strong>Nmap</strong> running on the other targets during my break.</p>
+        <p>When I returned, one machine’s foothold was incredibly tricky. I wish I could spoil it here, but let’s just say it was <em>tricky and fun</em>. My advice: <strong>Google everything</strong>. Even if it’s just a website name or an odd service showing up in Nmap — Google it!</p>
+        <p>I got a foothold after about 8 hours and reached 60 points. With only 10 points to go, I had two options: escalate privileges on a standalone or pivot to another machine. Since I was more comfortable with Windows, I chose to focus on <strong>privilege escalation</strong> on the standalone. Surprisingly, the privilege escalation trick was right in front of me the whole time, but <strong>WinPEAS</strong> didn’t detect it.</p>
+        <p>After manually enumerating the machine, I found the trick, escalated to <strong>SYSTEM</strong>, and secured the last 10 points I needed to pass. The whole privilege escalation process took me about 45 minutes.</p>
+        <p><img src="https://i.gyazo.com/ff2f19b42862d8b7d2277390bef502f0.gif" alt="5"></p>
+        <h3 id="report-writing-and-final-results">Report Writing and Final Results</h3>
+        <p>Hyped and relieved, I immediately started writing my report. Remember, no one wants to fail the OSCP because of a poor report, especially after all that hard work. My report was around 42 pages long, using the OffSec-provided template. I detailed every step, attack chain, vulnerability found, and mitigation strategy.</p>
+        <p>After about 3–4 hours, I perfected my report and submitted it. Three days later, I received the email I’d been waiting for: <strong>I PASSED!</strong> </p>
+        <p><a href="https://www.credential.net/6dd275c1-1f56-47fb-8349-6ed4483e5bd6#acc.9QzAO1SJ">View My credential</a></p>
+        <p><img src="https://i.gyazo.com/678a6d8e6482dbf6bf8774de2c36aa97.png" alt="6"></p>
+        <h3 id="afterthoughts">Afterthoughts</h3>
+        <p>The OSCP course could use some updates to better align with the actual exam. There are key techniques needed to pass that aren’t fully covered in the course materials, and at times it feels like this is done on purpose to maintain the reputation that the <strong>“OSCP is hard.”</strong></p>
+        <p>However, this has its benefits too. It forces you to think critically and conduct your own research, which is a vital skill in penetration testing.</p>
+        <h3 id="next-up-for-me">Next up for me?</h3>
+        <p>I’m planning to pursue <strong>OSCE3</strong>, but before that, I’ll likely tackle some <strong>red teaming</strong> and web-related certifications. Don’t worry — <strong>more blogs are coming</strong> to document my journey and hopefully inspire other beginners, intermediates, and professionals in the field to pursue their dreams and certifications.</p>
+    </div>
+</body>
+</html>
