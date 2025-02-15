@@ -74,25 +74,24 @@
     <section id="about">
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>2nd year university student <br />Expected graduation as a cybersecurity engineer in summer 2026</p>
-            </div>
+      <div class="about-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <img
+              src="./assets/education.png"
+              alt="Education icon"
+              class="icon"
+            />
+            <h3>Education</h3>
+            <p>2nd year university student <br />Expected graduation as a cybersecurity engineer in summer 2026</p>
           </div>
-          <div class="text-container">
-            <p>
-              I’m an offensive researcher, malware developer, red teamer. 
-              I find joy in emulating TTPs used by adversaries in the wild, and developing evasive tradecraft. 
-              I'm currently a holder of OSCP, CRTO, and PJPT.
-            </p>
-          </div>
+        </div>
+        <div class="text-container">
+          <p>
+            I’m an offensive researcher, malware developer, red teamer.
+            I find joy in emulating TTPs used by adversaries in the wild, and developing evasive tradecraft.
+            I'm currently a holder of OSCP, CRTO, and PJPT.
+          </p>
         </div>
       </div>
       <img
@@ -112,56 +111,60 @@
               <a href="blog1.html">My OSCP Journey</a>
             </div>
             <div class="blog-date">October 24, 2024</div>
-            <div class="blog-description">This is My First Blog post showcasing my OSCP Journey: From Failing The First Attempt To Passing The Second. It gives a brief overview of the content.</div>
+            <div class="blog-description">
+              This is My First Blog post showcasing my OSCP Journey: From Failing The First Attempt To Passing The Second. It gives a brief overview of the content.
+            </div>
           </div>
         </div>
       </div>
     </section>
-  
+
+    <!-- Existing inline styles for the blogs container -->
     <style>
       .container {
-          text-align: center;
-          padding: 50px 20px;
+        text-align: center;
+        padding: 50px 20px;
       }
       .section-title {
-          font-size: 2rem;
-          margin-bottom: 20px;
+        font-size: 2rem;
+        margin-bottom: 20px;
       }
       .blogs-container {
-          display: flex;
-          justify-content: center;
-          gap: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
       }
       .details-container {
-          background: #f9f9f9;
-          padding: 20px;
-          border-radius: 8px;
-          border: 1px solid #ddd;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          transition: 0.3s ease-in-out;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease-in-out;
       }
       .details-container:hover {
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
       .blog-entry {
-          text-align: left;
+        text-align: left;
       }
       .blog-title {
-          font-size: 22px;
-          font-weight: bold;
-          color: #333;
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
       }
       .blog-date {
-          font-size: 14px;
-          color: #777;
-          margin-top: 5px;
+        font-size: 14px;
+        color: #777;
+        margin-top: 5px;
       }
       .blog-description {
-          font-size: 16px;
-          color: #555;
-          margin-top: 10px;
+        font-size: 16px;
+        color: #555;
+        margin-top: 10px;
       }
     </style>
+
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
@@ -170,7 +173,8 @@
           <div class="details-container color-container">
             <h2 class="Blogs-sub-title project-title">FlexSheller</h2>
             <p class="project-description">
-              FlexSheller is a versatile tool for generating various types of shellcode in different formats, making it easy to adapt to various use cases. The tool supports modes that allow you to generate the shellcode as MAC addresses, IP addresses, UUIDs, and different encryption formats.</p>            </p>
+              FlexSheller is a versatile tool for generating various types of shellcode in different formats, making it easy to adapt to various use cases. The tool supports modes that allow you to generate the shellcode as MAC addresses, IP addresses, UUIDs, and different encryption formats.
+            </p>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -228,8 +232,70 @@
           </ul>
         </div>
       </nav>
-      <p>Copyright &#169; 2023 Amro Esseroukh. All Rights Reserved.</p>
+      <p>
+        Copyright &#169; 2023 Amro Esseroukh.
+        All Rights Reserved.
+      </p>
     </footer>
     <script src="script.js"></script>
+
+    <!-- Dark Theme Overrides (Added at the end) -->
+    <style>
+      /* Overall background and text color */
+      body {
+        background-color: #121212 !important;
+        color: #ffffff !important;
+      }
+      /* Navbars */
+      #desktop-nav, #hamburger-nav, footer nav {
+        background-color: #1e1e1e !important;
+      }
+      #desktop-nav .logo, #hamburger-nav .logo, 
+      #desktop-nav .nav-links li a, #hamburger-nav .nav-links li a,
+      footer .nav-links li a {
+        color: #ffffff !important;
+      }
+      /* Section backgrounds */
+      section, footer {
+        background-color: #121212 !important;
+      }
+      /* Details containers (blogs/projects) */
+      .details-container {
+        background: #1e1e1e !important;
+        border: 1px solid #333 !important;
+      }
+      .details-container:hover {
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+      }
+      /* Text within details */
+      .blog-title a {
+        color: #fff !important;
+      }
+      .blog-date {
+        color: #ccc !important;
+      }
+      .blog-description {
+        color: #ddd !important;
+      }
+      .project-description {
+        color: #ddd !important;
+      }
+      /* Buttons */
+      .btn-color-1, .btn-color-2 {
+        background-color: #333 !important;
+        color: #fff !important;
+        border: 1px solid #555 !important;
+      }
+      .btn-color-1:hover, .btn-color-2:hover {
+        background-color: #444 !important;
+      }
+      /* Links inside content (e.g., email, LinkedIn) */
+      a {
+        color: #86c0ee !important;
+      }
+      a:hover {
+        color: #aad4ff !important;
+      }
+    </style>
   </body>
 </html>
