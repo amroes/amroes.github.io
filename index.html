@@ -20,68 +20,156 @@
         </ul>
       </div>
     </nav>
-    
+    <nav id="hamburger-nav">
+      <div class="logo">Amro Esseroukh</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#blogs" onclick="toggleMenu()">Blogs</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/profilepic.png" alt="Amro Esseroukh profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Amro Esseroukh</h1>
+        <p class="section__text__p2">Offensive Security Researcher</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/EN_CV.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/amro-esseroukh-a6aa29229/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/amroes'"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="about-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <img
+              src="./assets/education.png"
+              alt="Education icon"
+              class="icon"
+            />
+            <h3>Education</h3>
+            <p>2nd year university student <br />Expected graduation as a cybersecurity engineer in summer 2026</p>
+          </div>
+        </div>
+        <div class="text-container">
+          <p>
+            I’m an offensive researcher, malware developer, red teamer.
+            I find joy in emulating TTPs used by adversaries in the wild, and developing evasive tradecraft.
+            I'm currently a holder of OSCP, CRTO, and PJPT.
+          </p>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#Blogs'"
+      />
+    </section>
     <section id="blogs" class="container">
       <p class="section__text__p1">Explore My</p>
       <h1 class="title">Blogs</h1>
-      
-      <!-- First Series: Windows User-Mode Exploit Development -->
-      <div class="blog-series">
-        <h2 class="series-title">Windows User-Mode Exploit Development</h2>
-        <div class="blogs-container">
-          <div class="details-container">
-            <div class="blog-entry">
-              <div class="blog-title">
-                <a href="blog2.html">Introduction to Exploit Development & x86 architecture</a>
-              </div>
-              <div class="blog-date">March 14, 2025</div>
-              <div class="blog-description">
-                This is the first blog of the series, where we explore exploit development on x86 architecture.
-              </div>
+      <div class="blogs-container">
+        <div class="details-container">
+          <div class="blog-entry">
+            <div class="blog-title">
+              <a href="blog1.html">My OSCP Journey</a>
+            </div>
+            <div class="blog-date">October 24, 2024</div>
+            <div class="blog-description">
+              This is My First Blog post showcasing my OSCP Journey: From Failing The First Attempt To Passing The Second. It gives a brief overview of the content.
             </div>
           </div>
-          <div class="details-container">
-            <div class="blog-entry">
-              <div class="blog-title">
-                <a href="blog3.html">WinDbg 101 – Essential Debugging Techniques for Exploit Dev</a>
-              </div>
-              <div class="blog-date">March 14, 2025</div>
-              <div class="blog-description">
-                The second blog covers WinDbg, the main debugging tool for this series.
-              </div>
+        </div>
+        
+        <!-- Grouped Blogs 2, 3, and 4 -->
+        <h2 class="series-title">Series 1: Foundations & First Exploits</h2>
+        <div class="details-container">
+          <div class="blog-entry">
+            <div class="blog-title">
+              <a href="blog2.html">Introduction to Exploit Development & x86 architecture</a>
+            </div>
+            <div class="blog-date">March 14, 2025</div>
+            <div class="blog-description">
+              This is The First blog of the Windows user-mode exploit development first series. We are going to understand what is exploit development on x86 architecture.
             </div>
           </div>
-          <div class="details-container">
-            <div class="blog-entry">
-              <div class="blog-title">
-                <a href="blog4.html">Understanding Stack-Based Overflows & Writing Your First Exploit</a>
-              </div>
-              <div class="blog-date">March 14, 2025</div>
-              <div class="blog-description">
-                The final blog of the series, covering stack-based overflows and exploitation techniques.
-              </div>
+        </div>
+        <div class="details-container">
+          <div class="blog-entry">
+            <div class="blog-title">
+              <a href="blog3.html">WinDbg 101 – Essential Debugging Techniques for Exploit Dev</a>
+            </div>
+            <div class="blog-date">March 14, 2025</div>
+            <div class="blog-description">
+              This is The second blog of the Windows user-mode exploit development first series. We are going to understand how to manipulate WinDbg since it's our main debugging tool we will be using through this series.
+            </div>
+          </div>
+        </div>
+        <div class="details-container">
+          <div class="blog-entry">
+            <div class="blog-title">
+              <a href="blog4.html">Understanding Stack-Based Overflows & Writing Your First Exploit</a>
+            </div>
+            <div class="blog-date">March 14, 2025</div>
+            <div class="blog-description">
+              This is The third and last blog of the Windows user-mode exploit development first series. Through this blog, we will understand what a Stack-Based overflow is and how to exploit it.
             </div>
           </div>
         </div>
       </div>
     </section>
 
+
+    <!-- Existing inline styles for the blogs container -->
     <style>
       .container {
         text-align: center;
         padding: 50px 20px;
       }
-      .series-title {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        text-align: center;
-        color: #333;
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
       }
       .blogs-container {
         display: flex;
         justify-content: center;
         gap: 20px;
-        flex-wrap: wrap;
       }
       .details-container {
         background: #f9f9f9;
@@ -90,28 +178,160 @@
         border: 1px solid #ddd;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: 0.3s ease-in-out;
-        max-width: 300px;
       }
       .details-container:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
-      .blog-title a {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #007bff;
-        text-decoration: none;
+      .blog-entry {
+        text-align: left;
       }
-      .blog-title a:hover {
-        text-decoration: underline;
+      .blog-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
       }
       .blog-date {
-        font-size: 0.9rem;
-        color: #666;
-        margin-bottom: 10px;
+        font-size: 14px;
+        color: #777;
+        margin-top: 5px;
       }
       .blog-description {
-        font-size: 1rem;
-        color: #444;
+        font-size: 16px;
+        color: #555;
+        margin-top: 10px;
+      }
+    </style>
+
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="Blogs-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <h2 class="Blogs-sub-title project-title">FlexSheller</h2>
+            <p class="project-description">
+              FlexSheller is a versatile tool for generating various types of shellcode in different formats, making it easy to adapt to various use cases. The tool supports modes that allow you to generate the shellcode as MAC addresses, IP addresses, UUIDs, and different encryption formats.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/amroes/FlexSheller'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/amroes/FlexSheller'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:amroesseroukh012@gmail.com">amroesseroukh012@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/amro-esseroukh-a6aa29229/">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>
+        Copyright &#169; 2023 Amro Esseroukh.
+        All Rights Reserved.
+      </p>
+    </footer>
+    <script src="script.js"></script>
+
+    <!-- Dark Theme Overrides (Added at the end) -->
+    <style>
+      /* Overall background and text color */
+      body {
+        background-color: #121212 !important;
+        color: #ffffff !important;
+      }
+      /* Navbars */
+      #desktop-nav, #hamburger-nav, footer nav {
+        background-color: #1e1e1e !important;
+      }
+      #desktop-nav .logo, #hamburger-nav .logo, 
+      #desktop-nav .nav-links li a, #hamburger-nav .nav-links li a,
+      footer .nav-links li a {
+        color: #ffffff !important;
+      }
+      /* Section backgrounds */
+      section, footer {
+        background-color: #121212 !important;
+      }
+      /* Details containers (blogs/projects) */
+      .details-container {
+        background: #1e1e1e !important;
+        border: 1px solid #333 !important;
+      }
+      .details-container:hover {
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1) !important;
+      }
+      /* Text within details */
+      .blog-title a {
+        color: #fff !important;
+      }
+      .blog-date {
+        color: #ccc !important;
+      }
+      .blog-description {
+        color: #ddd !important;
+      }
+      .project-description {
+        color: #ddd !important;
+      }
+      /* Buttons */
+      .btn-color-1, .btn-color-2 {
+        background-color: #333 !important;
+        color: #fff !important;
+        border: 1px solid #555 !important;
+      }
+      .btn-color-1:hover, .btn-color-2:hover {
+        background-color: #444 !important;
+      }
+      /* Links inside content (e.g., email, LinkedIn) */
+      a {
+        color: #86c0ee !important;
+      }
+      a:hover {
+        color: #aad4ff !important;
       }
     </style>
   </body>
