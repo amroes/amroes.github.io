@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinDbg 101 – Essential Debugging Techniques for Exploit Dev</title>
+    <style>
+        /* General Styling */
+        body {
+            background-color: #000000; /* Black background */
+            color: #e0e0e0; /* Light gray text */
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            text-align: center; /* Center all text */
+        }
+
+        .container {
+            max-width: 800px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the container */
+            padding: 20px;
+            text-align: left; /* Left-align text inside container */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff; /* White headings */
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.5em; /* Larger title */
+        }
+
+        h2 {
+            font-size: 2em; /* Slightly smaller for subheadings */
+        }
+
+        p {
+            margin-bottom: 1.5em; /* Add spacing between paragraphs */
+        }
+
+        a {
+            color: #1e90ff; /* Blue links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        blockquote {
+            border-left: 4px solid #1e90ff; /* Blue left border */
+            margin: 1.5em 0; /* Add spacing */
+            padding-left: 20px;
+            color: #b0b0b0; /* Light gray text */
+        }
+
+        ul, ol {
+            list-style-type: square;
+            padding-left: 20px;
+            margin-bottom: 1.5em; /* Add spacing */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5em 0; /* Add spacing */
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #333; /* Dark gray horizontal rule */
+            margin: 20px 0; /* Add spacing */
+        }
+
+        code {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9em;
+            color: #c7254e; /* Red for code */
+            background-color: #f9f2f4; /* Light pink background */
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: #1e1e1e; /* Dark background for code blocks */
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5em 0; /* Add spacing */
+        }
+
+        pre code {
+            color: #e0e0e0; /* Light gray text for code blocks */
+            background-color: transparent; /* Remove background for code inside pre */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <hr>
+        <h2 id="WinDbg-101–Essential-Debugging-Techniques-for-Exploit-Dev">WinDbg 101–Essential Debugging Techniques for Exploit Dev</h2>
+        <p>Hello and welcome to the 2nd blog of the first series. In the previous <a href="https://amroes.github.io/Introduction-to-Exploit-Development-&-x86-architecture.html">blog</a>, we dived into x86 architecture, from program memory and stack fundamentals to x86 CPU and its registers. In this blog, we will explore some functionalities of WinDbg, which we are going to use in this whole series. So better pay attention.</p>
+        <h3 id="what-is-a-debugger-">What is a Debugger?</h3>
+        <p>We hear the words “debugging”, “debugging tools” too often, but what does this mean?</p>
+        <p>Basically, a debugger acts as a proxy between an application and the CPU, allowing interaction with memory and execution flow. Using a debugger allows us to view and interact with the memory and execution flow of applications. <a href="https://en.wikipedia.org/wiki/Debugger">source</a></p>
+        <p>Most OS memory is divided into kernel-mode (ring 0) and user-mode (ring 3). This series focuses on user-mode debugging only.</p>
+        <p>While there are many debuggers such as Immunity Debugger and OllyDbg, we will stick to WinDbg as it is a powerful tool made for user-mode and kernel-mode debugging, unlike other tools.</p>
+        <p>To make life easier, we will use debugging symbols.</p>
+        <p>Debugging symbols are extra information added to a program to help developers understand what’s happening when it runs. They include things like function names and variable names, making it easier to find and fix bugs. <strong><em>I mean, it’s easier and good for the eye to see a function name instead of raw assembly, right?</em></strong></p>
+        <p>So how can we load these symbols? When opening WinDbg, you will need to go to <strong><em>File &gt; Settings &gt; Debugging settings</em></strong> and then put <code>SRV*C:\Symbols*https://msdl.microsoft.com/download/symbols</code> in the <strong>Default symbol path</strong>.</p>
+        <p><a href="https://i.gyazo.com/9211f5f6c829de2055bc4269c84c2478.png">1</a>
+        <a href="https://i.gyazo.com/594fd3caaef0ceca25990ed948e7ecb4.png">2</a></p>
+        <p>Great! We did set our symbol path. We can issue to download the symbol files (.pdb extensions) with the command <code>.reload /f</code> before conducting any debugging!</p>
+        <p>Now, I will go through multiple commands and showcase with examples the results of each one. I will cover only the commands we will need in the whole series, and they are more than enough.</p>
+        <p>First, we’ll launch a Notepad instance and connect our debugger to it. <strong><em>Notepad will be our testing program to debug</em></strong>.</p>
+        <p>To do that, <strong>go to File &gt; Attach to Process &gt; notepad.exe</strong>.
+        <a href="https://i.gyazo.com/9964a2dd27297531ee1810a173705adf.png">3</a>
+        Now, we execute <code>.reload /f</code> and then wait until the download is completed.
+        <a href="https://i.gyazo.com/61876a4ba7148811b88db9b99991fda4.png">4</a>
+        Sweet! Time to learn some debugging commands.</p>
+        <ol>
+            <li><strong>Unassemble (u)</strong>: The result of the <code>u</code> command should be the assembly instructions of a program/functions.
+                <pre><code class="lang-bash">u kernel32!GetCurrentThread</code></pre>
+            </li>
+            <li><strong>Display Memory Content</strong>: We can read process memory content using the display command followed by the size indicator.
+                <ul>
+                    <li><code>db</code>: Display the content of an address in 1 byte.
+                        <img src="https://i.gyazo.com/5b4b2a90fee165b65659090324bf7bfe.png" alt="5">
+                    </li>
+                    <li><code>dw</code>: Display the content of an address in WORDS (2 bytes).
+                        <img src="https://i.gyazo.com/fdda4b03964fd15ac86df2330105d4fc.png" alt="6">
+                    </li>
+                    <li><code>dd</code>: Display the content of an address in DWORDS (4 bytes).
+                        <img src="https://i.gyazo.com/99d4d5b05ebc54b4910344b5e517c240.png" alt="7">
+                    </li>
+                    <li><code>dq</code>: Display the content of an address in QWORDS (8 bytes).
+                        <img src="https://i.gyazo.com/9a5597e27afabc44ddfd608ba23401fb.png" alt="8">
+                    </li>
+                    <li><code>dW</code>: Display the content of an address in ASCII characters along with WORDs.
+                        <img src="https://i.gyazo.com/36623da93b5cedc2c811bbf725115161.png" alt="9">
+                    </li>
+                    <li><code>dc</code>: Display the content of an address in ASCII characters along with DWORDS.
+                        <img src="https://i.gyazo.com/c7b3aea8d05fa6bbe9ab1d39d441aae1.png" alt="10">
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Display Structures</strong>: WinDbg allows us to display structures. This is really useful when conducting our analysis.
+                <ul>
+                    <li>Use the <code>dt</code> command to display the contents of a structure. Here, we will see what the TEB structure contains.
+                        <pre><code class="lang-bash">dt ntdll!_TEB</code></pre>
+                        <img src="https://i.gyazo.com/a9836b2e1cc4578fd909d9125690835c.png" alt="12">
+                    </li>
+                    <li>We can also see that inside the TEB structure resides another structure at offset 0x00, “_NT_TIB”. To dump all nested structures in a structure, we can use the <code>-r</code> flag to recursively dump them.
+                        <pre><code class="lang-bash">dt -r ntdll!_TEB @$teb</code></pre>
+                        <img src="https://i.gyazo.com/c17e0f7fb302dc1f6252a13ec63cfbdb.png" alt="13">
+                    </li>
+                    <li>We can also display the size of a structure. This may be useful since some Windows APIs take structures as arguments, so it’s necessary to know their size too.
+                        <pre><code class="lang-bash">?? sizeof(ntdll!_TEB)</code></pre>
+                        <img src="https://i.gyazo.com/1e91558928e93578cf04fc8125988b79.png" alt="15">
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <p>Thank you for taking your time reading this long blog. It was needed and serves as a mandatory prerequisite since we will mainly be using WinDbg. Congrats on learning how to use it! Now that we’ve covered most of its commands, we are ready to dive into the meat of the series: memory corruption vulnerabilities and how to exploit them. In the next blog, we will cover what a buffer overflow is and how to exploit it.</p>
+    </div>
+</body>
+</html>
