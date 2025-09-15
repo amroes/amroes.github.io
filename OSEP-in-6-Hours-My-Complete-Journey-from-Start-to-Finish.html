@@ -1,0 +1,90 @@
+<html><head><style>body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff;
+        }
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        blockquote {
+            border-left: 4px solid #1e90ff;
+            margin: 0;
+            padding-left: 20px;
+            color: #b0b0b0;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #333;
+            margin: 20px 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+</style></head><body><h1 id="my-osep-experience-getting-all-flags-in-6-hours">My OSEP Experience: Getting All Flags in 6 Hours</h1>
+<p>I got my OSEP on 20 august and I was also surprised to even get all flags in 6 hours with secrets.txt. In this blog, I will be sharing my experience, my preparation, and my review on the PEN-300 in general along with some tips to help you out for OSEP.</p>
+<h2 id="osep-general-info">OSEP - General Info</h2>
+<p>I&#39;m not gonna dive deep into this section since you can see the details of the course here (link to it), but overall it&#39;s an advanced course that teaches AD pentesting in hardened environments while evading AV and other security solutions like AppLocker and PowerShell CLM, etc.</p>
+<h2 id="preparation">Preparation</h2>
+<p>I didn&#39;t do no preparation besides the content of the course itself.</p>
+<p>First of all, I know most ask how long does it take to finish all the contents? For me, it took 1 month and half from 08/07 to 14/08, and then I did 3 labs and scheduled my exam as I was confident in my skills. (I also had experience beforehand of AD since I had CRTO and did real internship missions on AD with Orange Cyberdefense - shoutout to <a href="https://www.linkedin.com/in/amine-el-boukhari-6a040950/">Amine-El-Boukhari</a> for letting me in his missions - and also had most of the evasion stuff mastered a little from my security research internship with Sekera - shoutout to <a href="https://www.linkedin.com/in/younes-adraoui-24955823b/">Younes-Adrouai</a> for his amazing feedback during difficulties - and Sektor7 courses.)</p>
+<p>Overall, I knew most of the course content that way I had it easy going through it. There&#39;s no definite answer on how long it should take you. All that matters is perseverance and getting most of the course.</p>
+<p>I can confidently say that all you need for the exam is the course content :)</p>
+<h2 id="exam-experience">Exam Experience</h2>
+<p>Overall timeline is shown in this schema <img src="https://i.gyazo.com/ade9abed58bd48b9a8c211c897779dff.png" alt="diagram"></p>
+<p>So after finishing the course and was feeling like it&#39;s a common thing, it&#39;s repetitive, I scheduled my exam at 20/08 at 1AM after I had some checks verified.</p>
+<p>Then I started my enum and got foothold after 20 minutes which was surprising for me, unlike my experience on OSCP which took me hours that felt like eternity.</p>
+<p>After that, I pretty much wasn&#39;t blocked in the whole exam till a point on my flag 6 if I remember right, and it was a mistake I&#39;ve been doing on my end. Bizarre, it took me an hour but I quickly managed to figure it out, got my flag and rested for 30min, went for fresh air and meditating. I had also a rush in adrenaline since I was doing so well in the exam and I was so eager to finish it, but I decided to be wise and took a rest before going into the final round.</p>
+<p>Now that I was back from my 30min rest, I quickly reached flag 9 and then got secrets.txt as my 10th flag which surprisingly gets you all points and immediate pass.</p>
+<p>All the info about secrets.txt will be in your rules of engagement in the exam and will be clear how and where to find it, so don&#39;t worry about it. It&#39;s not like you&#39;re gonna play cat and mouse to find it.</p>
+<p>After finishing the exam, it was 7AM which means 6h was enough for me to get OSEP.</p>
+<p>I took all the screenshots needed and didn&#39;t finish the exam till I did the report in case some screenshots were missing. Honed my report and ended the exam. After 1.5 days, I had a mail saying that I passed OSEP :)</p>
+<h2 id="honest-review">Honest Review</h2>
+<p>The course is so in-depth and informative, especially on the evasion stuff which makes you capable of continuing research and adapt all skills learned to modern solutions.</p>
+<p>I would say more advanced AD attacks should be included and they are doing a good job adding them now like ADCS and JIT JEA.</p>
+<p>Overall, the course is 10/10 from me. No flaws for this one. Even if you&#39;re experienced, you&#39;ll get most of it which will lead to the tips below.</p>
+<h2 id="tips">Tips</h2>
+<ol>
+<li><p><strong>Treat anything as if it&#39;s new.</strong> Don&#39;t let your ego get on you for something you already knew. You will always get something new from something you already knew.</p>
+</li>
+<li><p><strong>Don&#39;t be stressed.</strong> It&#39;s not a life or death matter. Sure, it&#39;s a lot of $$$ invested there, but take it easy.</p>
+</li>
+<li><p><strong>Take a lot of rests</strong> even if you&#39;re doing well. Helps the mind stay fresh, healthy, and productive.</p>
+</li>
+<li><p><strong>For evasion, please please please consult these GitHub repos below.</strong> They will be a great help in exercises, lab, and exam. You can literally breeze through defenses with them as they combine all skills learned in well-designed scripts. (Maybe even more advanced than the course). Also, don&#39;t be afraid to use code. You earned your skill, you understood everything and wrote everything. Finding a tool online that does the same as your tool does and more efficiently is more valuable than anything.</p>
+<ul>
+<li><a href="https://github.com/Extravenger/OSEPlayground/tree/main/03%20-%20CLM%20%26%20Applocker%20Bypass">OSEPlayground</a> by Extravenger</li>
+<li><a href="https://github.com/ThatTotallyRealMyth/OSEP-Stuff/tree/main/Payloads">AppLocker and CLM bypass</a> by ThatTotallyRealMyth</li>
+<li><a href="https://github.com/amroes/byebyeAV">My ByeByeAV </a> code that evades even latest Sophos and Kaspersky and Windows Defender at the time of writing</li>
+<li><a href="https://github.com/n3rada/MSSQLand">MSSQLand</a> for most automated SQL servers exploitation.</li>
+</ul>
+</li>
+<li><p><strong>I didn&#39;t use any C2.</strong> Just ligolo-ng is fine, but you are free to use any non-commercial C2 you want.</p>
+</li>
+<li><p><strong>Finally, don&#39;t underestimate the report.</strong> Give it some time since you don&#39;t wanna fail because of the report. It&#39;s gonna suck, right? :)</p>
+</li>
+</ol>
+<p>Have fun and good luck to all of you.</p>
+<h2 id="next-step">Next step</h2>
+<p>I&#39;m by nature so deep in love with challenges and making the impossible seem possible so probably getting OSCE3 before graduation is a good goal for me to chase right now :3 , btw here is my OSEP cert <img src="https://i.gyazo.com/8b279cae3d2856236b91b846788a2d36.png" alt="OSEP"></p>
+<p>Thanks for reading my blog , if you have any further questions don&#39;t hesitate to contact me through <a href="https://www.linkedin.com/in/amro-esseroukh">Linkedin</a></p>
+</body></html>
