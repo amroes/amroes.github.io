@@ -1,0 +1,484 @@
+<html><head><style>/* GENERAL */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: black;
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+p {
+  color: rgb(200, 200, 200);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+/* TRANSITION */
+
+a,
+.btn {
+  transition: all 300ms ease;
+}
+
+/* DESKTOP NAV */
+
+nav,
+.nav-links {
+  display: flex;
+}
+
+nav {
+  justify-content: space-around;
+  align-items: center;
+  height: 17vh;
+}
+
+.nav-links {
+  gap: 2rem;
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+a {
+  color: #4a9eff;
+  text-decoration: none;
+  text-decoration-color: #4a9eff;
+}
+
+a:hover {
+  color: #82bfff;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: #82bfff;
+}
+
+.logo {
+  font-size: 2rem;
+  color: white;
+}
+
+.logo:hover {
+  cursor: default;
+}
+
+/* HAMBURGER MENU */
+
+#hamburger-nav {
+  display: none;
+}
+
+.hamburger-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: black;
+  width: fit-content;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #4a9eff;
+  text-decoration: none;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links li {
+  list-style: none;
+}
+
+.menu-links.open {
+  max-height: 300px;
+}
+
+.hamburger-icon.open span:first-child {
+  transform: rotate(45deg) translate(10px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+.hamburger-icon span:first-child {
+  opacity: 1;
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+/* SECTIONS */
+
+section {
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  box-sizing: border-box;
+  min-height: fit-content;
+}
+
+.section-container {
+  display: flex;
+}
+
+/* PROFILE SECTION */
+
+#profile {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  height: 80vh;
+}
+
+.section__pic-container {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+.section__text {
+  align-self: center;
+  text-align: center;
+}
+
+.section__text p {
+  font-weight: 600;
+  color: rgb(200, 200, 200);
+}
+
+.section__text__p1 {
+  text-align: center;
+}
+
+.section__text__p2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+}
+
+#socials-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+/* ICONS */
+
+.icon {
+  cursor: pointer;
+  height: 2rem;
+}
+
+/* BUTTONS */
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+}
+
+.btn-color-1,
+.btn-color-2 {
+  border: rgb(200, 200, 200) 0.1rem solid;
+}
+
+.btn-color-1:hover,
+.btn-color-2:hover {
+  cursor: pointer;
+}
+
+.btn-color-1,
+.btn-color-2:hover {
+  background: rgb(200, 200, 200);
+  color: black;
+}
+
+.btn-color-1:hover {
+  background: rgb(255, 255, 255);
+}
+
+.btn-color-2 {
+  background: none;
+  color: white;
+}
+
+.btn-color-2:hover {
+  border: rgb(255, 255, 255) 0.1rem solid;
+}
+
+.btn-container {
+  gap: 1rem;
+}
+
+/* ABOUT SECTION */
+
+#about {
+  position: relative;
+}
+
+.about-containers {
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.about-details-container {
+  justify-content: center;
+  flex-direction: column;
+}
+
+.about-containers,
+.about-details-container {
+  display: flex;
+}
+
+.about-pic {
+  border-radius: 2rem;
+}
+
+.arrow {
+  position: absolute;
+  right: -5rem;
+  bottom: 2.5rem;
+}
+
+.details-container {
+  padding: 1.5rem;
+  flex: 1;
+  background: rgb(20, 20, 20);
+  border-radius: 2rem;
+  border: rgb(80, 80, 80) 0.1rem solid;
+  text-align: center;
+}
+
+.section-container {
+  gap: 4rem;
+  height: 80%;
+}
+
+.section__pic-container {
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+/* EXPERIENCE SECTION */
+
+#experience {
+  position: relative;
+}
+
+.experience-sub-title {
+  color: white;
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.experience-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.article-container {
+  display: flex;
+  text-align: initial;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 2.5rem;
+  justify-content: space-around;
+}
+
+article {
+  display: flex;
+  width: 10rem;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+article .icon {
+  cursor: default;
+}
+
+/* PROJECTS SECTION */
+
+#projects {
+  position: relative;
+}
+
+.color-container {
+  border-color: rgb(80, 80, 80);
+  background: rgb(20, 20, 20);
+}
+
+.project-img {
+  border-radius: 2rem;
+  width: 90%;
+  height: 90%;
+}
+
+.project-title {
+  margin: 1rem;
+  color: white;
+}
+
+.project-btn {
+  color: white;
+  border-color: rgb(80, 80, 80);
+}
+
+/* CONTACT */
+
+#contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.contact-info-upper-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 2rem;
+  border: rgb(80, 80, 80) 0.1rem solid;
+  background: rgb(20, 20, 20);
+  margin: 2rem auto;
+  padding: 0.5rem;
+}
+
+.contact-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.contact-info-container p {
+  font-size: larger;
+}
+
+.contact-icon {
+  cursor: default;
+}
+
+.email-icon {
+  height: 2.5rem;
+}
+
+/* FOOTER SECTION */
+
+footer {
+  height: 26vh;
+  margin: 0 1rem;
+}
+
+footer p {
+  text-align: center;
+  color: rgb(200, 200, 200);
+}
+body {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}</style></head><body><h1 id="osed-my-honest-review-and-experience">OSED My Honest Review And Experience</h1>
+<p>Hey everyone, welcome back, again! If you just came from my OSWE blog, first of all thank you, second of all grab another coffee because we&#39;re not done yet. As I mentioned over there, I&#39;m dropping two blogs at once to make up for the long silence, and this one is solely about my OSED experience which I completed on January 30, 2026. You can read about my OSWE experience <a href="https://amroes.github.io/OSWE-in-the-last-4minutes-Complete-Journey-from-Start-to-Finish.html">here</a>, and my OSEP experience <a href="https://amroes.github.io/OSEP-in-6-Hours-My-Complete-Journey-from-Start-to-Finish.html">here</a>, which started it all.</p>
+<p>Together with OSWE, these three got me the OSCE3, which still feels surreal to say, but let&#39;s get into it.</p>
+<hr>
+<h2 id="what-is-osed-">What is OSED?</h2>
+<p>I won&#39;t go deep into what OSED is since you can find that info on their <a href="https://www.offsec.com/courses/exp-301/">website</a>, but in short it&#39;s a certification that challenges you in reverse engineering, exploit development, and shellcode development. It&#39;s based on x86, though they&#39;ve been adding x64 modules to make it a prerequisite for the hardest OffSec cert out there, OSEE. Check their website for the full details. Now let&#39;s talk requirements, because this one actually matters more than people think.</p>
+<hr>
+<h2 id="requirements">Requirements</h2>
+<p>Unlike other certs, the one thing I&#39;d genuinely say you need here is assembly knowledge. I know plenty of people go through the course without it and figure things out along the way, but personally I think having it beforehand makes a real difference. I did an <a href="https://www.udemy.com/course/assembly-for-reverse-engineering/?srsltid=AfmBOoqOfn3iQHeiL3U49fpYlGFNbnANN7ao1sdas-dJpwvIi8LNLL4q">x86 assembly course</a> on Udemy before starting OSED and it made grasping concepts faster, troubleshooting errors less painful, and understanding the harder stuff like ROP chains, DEP and ASLR bypasses, and format string exploitation much more manageable.</p>
+<p>ROP chain building especially benefits from it, since you&#39;re essentially searching for specific assembly expressions to chain together to do something useful, like calling API functions to get a reverse shell. Without at least a basic feel for assembly, that process is rough. You can absolutely do the course without it and struggle your way through, but I personally believe in learning the concepts properly rather than just chasing the cert. If you&#39;re genuinely interested in OSED and not just going for the trio, basics first is the move. The Udemy course I did also uses a debugger throughout and overlaps nicely with OSED content, which is a bonus.</p>
+<hr>
+<h2 id="course-and-lab-experience">Course and Lab Experience</h2>
+<p>Honest opinion, this is the second most enjoyable course I&#39;ve ever done. First place still goes to OSEP because I&#39;m an active directory guy at heart, again you can find that blog <a href="https://amroes.github.io/OSEP-in-6-Hours-My-Complete-Journey-from-Start-to-Finish.html">here</a>, but OSED is a very close second.</p>
+<p>The course teaches the concepts really well and walks you through everything in detail. Whoever wrote this course deserves credit because it&#39;s genuinely well put together. Labs are top notch too and directly useful for the exam. Scripting is involved but it&#39;s much more repetitive and straightforward compared to OSWE, so don&#39;t stress about it too much.</p>
+<p>Content-wise you&#39;ll go from basic overflow attacks, to bypassing mitigations like DEP and ASLR, to exploit development in both x86 and x64. They also added a module that was originally OSEE content, a VMware escape, which I haven&#39;t done yet but it&#39;s there. The course is well structured overall. My only real wish is that they had included a short assembly 101 module at the start to give everyone a baseline before diving in, that would have been fire. But everything else is detailed enough that you just need to take proper notes and visualize the harder concepts. Things like SEH overflows are not actually complicated once you get them, but the flow has many steps and checks, and drawing it out or using AI to generate a visual graph makes it click way faster. OffSec won&#39;t do it for you but your favorite LLM will, use it.</p>
+<p>The reverse engineering section deserves a special mention, it was genuinely fun and one of the highlights of the whole course.</p>
+<p>The secret to passing OSED is documenting everything, staying curious, and actually grasping the new concepts rather than just copying steps. Pretty much everything in this course will be new to you, so proper note-taking and genuine interest go a long way. It took me three months total including labs, same as OSWE.</p>
+<p>And I know this won&#39;t mean much until you experience it yourself, but the first time you build a full ROP chain from scratch and it actually works in a challenge lab or the exam, the feeling of accomplishment is unlike anything else. Genuinely one of the best moments in this whole journey.</p>
+<hr>
+<h2 id="exam-experience">Exam Experience</h2>
+<p>The exam was fine, smooth, nothing crazy but still challenging. Understanding the course and doing the labs is 100% required, there&#39;s no way around it. Beyond that it&#39;s mostly about managing your stress and your time, and the exam is absolutely feasible, even with all three challenges. You have 48 hours which includes rest and sleep so don&#39;t panic, it&#39;s more than enough time if you pace yourself.</p>
+<p>Keep your head up when you&#39;re stuck, take your breaks, and remember it&#39;s just an exam at the end of the day. I&#39;m pretty sure you&#39;ve been through harder things in life that make this look small in comparison, so try not to let stress pile up to the point where it blocks you from accessing everything you studied and trained for in the labs, because the exam is very much built around them.</p>
+<hr>
+<h2 id="advice">Advice</h2>
+<ol>
+<li><p>Take detailed notes and go the extra mile where you can. It&#39;s not optional, it&#39;s what gets you through the exam.</p>
+</li>
+<li><p>Take your time with the course and labs, don&#39;t rush. Ask for help in the Discord when you&#39;re stuck, people there are genuinely helpful.</p>
+</li>
+<li><p>Get good rest before the exam and sleep properly the night before. Go in clear and focused. You know this stuff, trust yourself.</p>
+</li>
+<li><p>Enjoy the exam. It&#39;s challenging but it&#39;s genuinely fun once you&#39;re in it, so make sure you actually get something out of the experience beyond just the cert.</p>
+</li>
+</ol>
+<hr>
+<p>That&#39;s it for my OSED blog. It was a fun ride and I&#39;m now officially OSCE3 certified, which is still wild to say. I&#39;m planning to write a full retrospective blog in the future, basically my whole journey from zero to OSCE3, that&#39;s the idea at least. Stay tuned for that one.</p>
+<p>As always if you have any questions don&#39;t hesitate to reach out on <a href="https://www.linkedin.com/in/amro-esseroukh">LinkedIn</a> and I&#39;ll be happy to help. Enjoy, and cheers!</p>
+<p><img src="https://i.gyazo.com/038040351e7680a6d84f4ee2dd85ec4a.png" alt="OSED"></p>
+</body></html>

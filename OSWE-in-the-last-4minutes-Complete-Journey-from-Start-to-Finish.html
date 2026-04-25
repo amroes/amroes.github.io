@@ -1,0 +1,494 @@
+<html><head><style>/* GENERAL */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: black;
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+p {
+  color: rgb(200, 200, 200);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+/* TRANSITION */
+
+a,
+.btn {
+  transition: all 300ms ease;
+}
+
+/* DESKTOP NAV */
+
+nav,
+.nav-links {
+  display: flex;
+}
+
+nav {
+  justify-content: space-around;
+  align-items: center;
+  height: 17vh;
+}
+
+.nav-links {
+  gap: 2rem;
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+a {
+  color: #4a9eff;
+  text-decoration: none;
+  text-decoration-color: #4a9eff;
+}
+
+a:hover {
+  color: #82bfff;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: #82bfff;
+}
+
+.logo {
+  font-size: 2rem;
+  color: white;
+}
+
+.logo:hover {
+  cursor: default;
+}
+
+/* HAMBURGER MENU */
+
+#hamburger-nav {
+  display: none;
+}
+
+.hamburger-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: black;
+  width: fit-content;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #4a9eff;
+  text-decoration: none;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links li {
+  list-style: none;
+}
+
+.menu-links.open {
+  max-height: 300px;
+}
+
+.hamburger-icon.open span:first-child {
+  transform: rotate(45deg) translate(10px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+.hamburger-icon span:first-child {
+  opacity: 1;
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+/* SECTIONS */
+
+section {
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  box-sizing: border-box;
+  min-height: fit-content;
+}
+
+.section-container {
+  display: flex;
+}
+
+/* PROFILE SECTION */
+
+#profile {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  height: 80vh;
+}
+
+.section__pic-container {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+.section__text {
+  align-self: center;
+  text-align: center;
+}
+
+.section__text p {
+  font-weight: 600;
+  color: rgb(200, 200, 200);
+}
+
+.section__text__p1 {
+  text-align: center;
+}
+
+.section__text__p2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+}
+
+#socials-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+/* ICONS */
+
+.icon {
+  cursor: pointer;
+  height: 2rem;
+}
+
+/* BUTTONS */
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+}
+
+.btn-color-1,
+.btn-color-2 {
+  border: rgb(200, 200, 200) 0.1rem solid;
+}
+
+.btn-color-1:hover,
+.btn-color-2:hover {
+  cursor: pointer;
+}
+
+.btn-color-1,
+.btn-color-2:hover {
+  background: rgb(200, 200, 200);
+  color: black;
+}
+
+.btn-color-1:hover {
+  background: rgb(255, 255, 255);
+}
+
+.btn-color-2 {
+  background: none;
+  color: white;
+}
+
+.btn-color-2:hover {
+  border: rgb(255, 255, 255) 0.1rem solid;
+}
+
+.btn-container {
+  gap: 1rem;
+}
+
+/* ABOUT SECTION */
+
+#about {
+  position: relative;
+}
+
+.about-containers {
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.about-details-container {
+  justify-content: center;
+  flex-direction: column;
+}
+
+.about-containers,
+.about-details-container {
+  display: flex;
+}
+
+.about-pic {
+  border-radius: 2rem;
+}
+
+.arrow {
+  position: absolute;
+  right: -5rem;
+  bottom: 2.5rem;
+}
+
+.details-container {
+  padding: 1.5rem;
+  flex: 1;
+  background: rgb(20, 20, 20);
+  border-radius: 2rem;
+  border: rgb(80, 80, 80) 0.1rem solid;
+  text-align: center;
+}
+
+.section-container {
+  gap: 4rem;
+  height: 80%;
+}
+
+.section__pic-container {
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+/* EXPERIENCE SECTION */
+
+#experience {
+  position: relative;
+}
+
+.experience-sub-title {
+  color: white;
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.experience-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.article-container {
+  display: flex;
+  text-align: initial;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 2.5rem;
+  justify-content: space-around;
+}
+
+article {
+  display: flex;
+  width: 10rem;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+article .icon {
+  cursor: default;
+}
+
+/* PROJECTS SECTION */
+
+#projects {
+  position: relative;
+}
+
+.color-container {
+  border-color: rgb(80, 80, 80);
+  background: rgb(20, 20, 20);
+}
+
+.project-img {
+  border-radius: 2rem;
+  width: 90%;
+  height: 90%;
+}
+
+.project-title {
+  margin: 1rem;
+  color: white;
+}
+
+.project-btn {
+  color: white;
+  border-color: rgb(80, 80, 80);
+}
+
+/* CONTACT */
+
+#contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.contact-info-upper-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 2rem;
+  border: rgb(80, 80, 80) 0.1rem solid;
+  background: rgb(20, 20, 20);
+  margin: 2rem auto;
+  padding: 0.5rem;
+}
+
+.contact-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.contact-info-container p {
+  font-size: larger;
+}
+
+.contact-icon {
+  cursor: default;
+}
+
+.email-icon {
+  height: 2.5rem;
+}
+
+/* FOOTER SECTION */
+
+footer {
+  height: 26vh;
+  margin: 0 1rem;
+}
+
+footer p {
+  text-align: center;
+  color: rgb(200, 200, 200);
+}
+body {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}</style></head><body><h1 id="oswe-in-the-last-4-minutes-complete-journey-from-start-to-finish">OSWE in the last 4 minutes Complete Journey from Start to Finish</h1>
+<p>Hey everyone, welcome back to my blog. I know, I know, it&#39;s been a while, honestly way too long since my last post. Life got busy, certs got done, and somehow writing about it kept getting pushed back. But here I am now, back with not one but two blogs dropping at the same time, so grab a coffee because we have a lot to cover.</p>
+<p>This blog is solely about my OSWE experience which I completed on October 23, 2025, and you can read about my OSED experience separately <a href="OSED-My-Honest-Review-And-Experience.html">here</a>. Both of them together got me the OSCE3 which is pretty wild to say out loud, but let&#39;s not get ahead of ourselves, one cert at a time.</p>
+<p>My last <a href="OSEP-in-6-Hours-My-Complete-Journey-from-Start-to-Finish.html">blog</a> was about my OSEP experience, go check it out if you haven&#39;t already.</p>
+<hr>
+<h2 id="what-is-oswe-">What is OSWE?</h2>
+<p>I won&#39;t go into deep detail about what OSWE is since you can find that info on their <a href="https://www.offsec.com/courses/exp-301/">website</a>, but in short, it&#39;s a whitebox web certification where you learn how to approach a whitebox pentest, analyse source code to find vulnerabilities, and chain them toward a specific objective. Check their website for the full syllabus, but since you&#39;re reading this you probably already know what it is, so let&#39;s talk about requirements.</p>
+<hr>
+<h2 id="requirements">Requirements</h2>
+<p>Personally I did it without going through the PortSwigger course first, which a lot of people suggest. I won&#39;t say it wouldn&#39;t help, it probably would, but in my case I was already familiar with the concepts through CPTS, NSD, and OSCP. And since OSWE is whitebox, I figured I wouldn&#39;t need the full PortSwigger knowledge bank and just went for it. No regrets, but I&#39;d still say it can help if you feel like you need the foundation.</p>
+<p>As for scripting, I&#39;ll drop some resources in the appendix below that I personally used along the way. Python only is completely fine, and you really just need the basics. Everything else follows with practice, trust me. You won&#39;t learn coding from tutorials, you learn it by jumping into projects, and OSWE is your project now. If you know if/else, for loops, while loops and the like, you&#39;re good to go. Jump in.</p>
+<hr>
+<h2 id="course-and-lab-experience">Course and Lab Experience</h2>
+<p>I won&#39;t lie, when I started the course I was motivated. The content is solid and based on my experience with OSEP, the 300-level OffSec courses are generally well done. That said, OSWE was the weakest of the three in my opinion. It walks you through the material, shows you a vulnerability they already found, and then vaguely tells you to follow some steps, but never really explains the approach or what they tried before finding it. That part is important if you want to actually build a methodology for finding vulns, and it was lacking in a good chunk of the modules. Everything else was top notch, but that specific thing bothered me.</p>
+<p>Don&#39;t worry though, because the real learning happens in the labs. Once I moved to labs I started actually developing the methodology I was missing. When I finished the course I honestly felt like I understood nothing and had zero methodology. The labs fixed that. I did all of them except the last one (squeaker, you know who you are). In total I spent around two months on the course, reading, taking notes, watching videos, and then another month on labs, so three months total. After that I felt confident enough to attempt the exam.</p>
+<hr>
+<h2 id="exam-experience">Exam Experience</h2>
+<p>What everyone says is true, the exam is challenging but very doable if you put the work into the course and especially the labs. The only thing that can really hold you back if you know your stuff is stress, and stress will straight up block your brain from thinking clearly. Stay chill, take breaks, you have 48 hours for a reason. It&#39;s not because the exam needs 48 hours of your life, it&#39;s because you&#39;re a human being who needs to sleep, eat, and exist. They built the time buffer for that.</p>
+<p>I hit a lot of dead ends during my exam. The first challenge was relatively quick for initial access, but I got stuck on RCE for a while. Moved on to the second challenge which was honestly tricky for initial access, but I eventually figured out what I was missing (please, please get comfortable using a remote debugger, it&#39;s genuinely a life changing skill for this cert). RCE on the second one was straightforward after that. At that point I had 85/100 so I knew I had enough to pass. I knew the RCE path for the first challenge too but didn&#39;t want to burn time on it since scripting was still ahead of me.</p>
+<p>Scripting was the rough part. I had encoding issues I hadn&#39;t anticipated, like making sure everything is URL encoded before your script sends requests, and if you&#39;re using curl-based flows sometimes a specific encoding step needs to happen before the command fires. Lesson learned. Everything was also slow to execute so the minutes waiting for scripts to finish felt like actual hours, but they spit out the flags as intended and I was happy. I finished with 4 minutes to spare by the way. Cutting it close, classic.</p>
+<p>The note-taking and scripting I did throughout the labs saved me in the exam, I basically had templates ready to go. Do not skip scripting the labs.</p>
+<hr>
+<h2 id="advice">Advice</h2>
+<ol>
+<li><p>Take your time in the course, note everything you think could be useful, and script every single lab exercise including the extra labs. Trust me, when exam time comes you&#39;ll feel confident because it&#39;s all just practice at that point.</p>
+</li>
+<li><p>Take breaks during the exam, even when you feel like pushing through. Resting every 3 to 4 hours or after getting a flag keeps your brain fresh the whole way through. I personally did this until scripting gave me problems and then I pulled an all-nighter fixing encoding issues, so, do as I say not as I do.</p>
+</li>
+<li><p>Stress and nervousness are basically unavoidable, you&#39;ll always feel like you&#39;re not ready. But you&#39;ve probably felt this before in other exams or life experiences and got through it anyway, so treat this the same way. Go in with the mindset that you&#39;ll crush it, because you probably will.</p>
+</li>
+<li><p>Use LLMs to help with scripting during the course and labs. They&#39;re great for understanding what your code is doing and building reusable templates.</p>
+</li>
+<li><p>Ask for help in the Discord when you&#39;re stuck. I personally lurk in the rooms and try to help people out when I can.</p>
+</li>
+<li><p>Enjoy the process. Happiness in these certs isn&#39;t just about passing, it&#39;s about getting stuck, feeling completely lost, and then suddenly clicking everything into place and feeling like you can do anything. And keep in mind this is a beginner cert in the web space, you&#39;ll learn the knowledge and skills needed but don&#39;t expect to come out as a web expert. Experience teaches things that no cert ever will.</p>
+</li>
+</ol>
+<hr>
+<h2 id="appendix">Appendix</h2>
+<p>Resources I found useful for preparation and scripting:</p>
+<ul>
+<li><a href="https://github.com/farhankn/oswe_preparation?tab=readme-ov-file">https://github.com/farhankn/oswe_preparation?tab=readme-ov-file</a></li>
+<li><a href="https://github.com/Xcatolin/OSWE-Prep">https://github.com/Xcatolin/OSWE-Prep</a></li>
+<li>For scripting: <a href="https://github.com/luminati-io/python-requests">https://github.com/luminati-io/python-requests</a></li>
+</ul>
+<hr>
+<p>That&#39;s it for this one. If you have any questions feel free to follow me on <a href="https://www.linkedin.com/in/amro-esseroukh">LinkedIn</a> and shoot me a message, I&#39;m always happy to help. Thanks for reading, hopefully it was useful, keep pushing !!</p>
+<p><img src="https://i.gyazo.com/de80f4c9864a12a9f9ceb7b90f9c72c3.png" alt="OSWE"></p>
+</body></html>
